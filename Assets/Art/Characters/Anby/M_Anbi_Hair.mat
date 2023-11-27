@@ -21,16 +21,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Anbi_Hair
-  m_Shader: {fileID: 4800000, guid: 3a77fa2ca93938b4cbc52110f269f23b, type: 3}
+  m_Shader: {fileID: 4800000, guid: 22dc9296da3985a489b19dec53d731e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _EMISSIVE_SIMPLE
   - _IS_ANGELRING_OFF
-  - _IS_CLIPPING_OFF
+  - _IS_TRANSCLIPPING_OFF
+  - _OUTLINE_ON
+  - _OUTLINE_UV7_SMOOTH_NORMAL
+  - _SHADINGGRADEMAP
+  m_InvalidKeywords:
+  - _
   - _IS_OUTLINE_CLIPPING_NO
   - _OUTLINE_NML
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -290,6 +294,8 @@ Material:
     - _Blend: 0
     - _BlendMode: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
+    - _BlendOpOverlay: 0
     - _BlurLevelMatcap: 0
     - _BlurLevelSGM: 0
     - _BumpScale: 1
@@ -336,6 +342,8 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _DstBlendMode: 0
+    - _DstBlendModeOverlay: 0
     - _EMISSIVE: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
@@ -416,8 +424,11 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
+    - _OutlineGamma: 16
     - _OutlineOverridden: 0
+    - _OutlineUseUV7SmoothNormal: 1
     - _OutlineVisible: 1
+    - _OutlineWidth: 1
     - _Outline_Width: 1.5
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -430,8 +441,13 @@ Material:
     - _ReceivesSSR: 1
     - _RefractionModel: 0
     - _RimLight: 0
+    - _RimLightBrightness: 1
+    - _RimLightFadeout: 1
+    - _RimLightMixAlbedo: 0.9
     - _RimLightOverridden: 0
+    - _RimLightThreshold: 0.05
     - _RimLightVisible: 1
+    - _RimLightWidth: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
@@ -457,21 +473,28 @@ Material:
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _SrcBlendMode: 1
+    - _SrcBlendModeOverlay: 1
     - _StencilComp: 0
+    - _StencilCompOverlay: 0
+    - _StencilFailOp: 0
     - _StencilMode: 0
     - _StencilNo: 1
     - _StencilOpFail: 0
     - _StencilOpPass: 0
-    - _StencilRef: 2
+    - _StencilPassOp: 0
+    - _StencilRef: 0
     - _StencilRefDepth: 0
     - _StencilRefDistortionVec: 64
     - _StencilRefGBuffer: 2
     - _StencilRefMV: 128
+    - _StencilRefOverlay: 0
     - _StencilWriteMask: 3
     - _StencilWriteMaskDepth: 32
     - _StencilWriteMaskDistortionVec: 64
     - _StencilWriteMaskGBuffer: 3
     - _StencilWriteMaskMV: 128
+    - _StencilZFailOp: 0
     - _StepOffset: 0
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
@@ -504,8 +527,10 @@ Material:
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
-    - _Unlit_Intensity: 0
+    - _Unlit_Intensity: 1
+    - _UseDrawOverlay: 0
     - _UseEmissiveIntensity: 0
+    - _UseOutline: 1
     - _UseShadowThreshold: 0
     - _Use_1stAs2nd: 1
     - _Use_BaseAs1st: 1
@@ -519,7 +544,10 @@ Material:
     - _ZWriteMode: 1
     - _isUnityToonshader: 1
     - _simpleUI: 0
-    - _utsTechnique: 0
+    - _test1: 0
+    - _test2: 0
+    - _test3: 0
+    - _utsTechnique: 1
     - _utsVersionX: 0
     - _utsVersionY: 9
     - _utsVersionZ: 5
@@ -550,6 +578,7 @@ Material:
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimLightMaskColor: {r: 1, g: 0, b: 1, a: 1}
+    - _RimLightTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondShadeMaskColor: {r: 0, g: 0, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}

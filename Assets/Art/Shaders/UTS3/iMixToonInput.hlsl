@@ -1,3 +1,8 @@
+//iMix/Toon   mix from : UTS3/NiloToon/Genshin/StartRail/ZoneZero/BRDF
+//imixgold@gmail.com 
+
+
+
 #ifndef UNIVERSAL_TOON_INPUT_INCLUDED
 #define UNIVERSAL_TOON_INPUT_INCLUDED
 
@@ -61,6 +66,8 @@ float _TweakHighColorOnShadow;
 float4 _Set_HighColorMask_ST;
 
 float _Tweak_HighColorMaskLevel;
+
+//RimLight
 fixed _RimLight;
 float4 _RimLightColor;
 fixed _Is_LightColor_RimLight;
@@ -77,6 +84,15 @@ float _Ap_RimLight_Power;
 fixed _Ap_RimLight_FeatherOff;
 float4 _Set_RimLightMask_ST;
 float _Tweak_RimLightMaskLevel;
+//StartRailRimLight
+float _RimLightWidth;
+float _RimLightThreshold;
+float _RimLightFadeout;
+float3 _RimLightTintColor;
+float _RimLightBrightness;
+float _RimLightMixAlbedo;
+
+
 fixed _MatCap;
 
 float4 _MatCap_Sampler_ST;
@@ -152,23 +168,13 @@ fixed _ARSampler_AlphaOn;
 // OUTLINE 
 
 
-fixed _Is_LightColor_Outline;
+float _OutlineWidth;
+float _OutlineGamma;
 
-float _Outline_Width;
-float _Farthest_Distance;
-float _Nearest_Distance;
-float4 _Outline_Sampler_ST;
-float4 _Outline_Color;
-fixed _Is_BlendBaseColor;
-float _Offset_Z;
+float _test1;
+float _test2;
+float _test3;
 
-float4 _OutlineTex_ST;
-fixed _Is_OutlineTex;
-
-float4 _BakedNormal_ST;
-fixed _Is_BakedNormal;
-
-float _ZOverDrawMode;
 
 //
 // 

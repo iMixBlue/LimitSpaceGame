@@ -1,6 +1,6 @@
-﻿//Unity Toon Shader/Universal
-//nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Universal RP/HDRP) 
+﻿//iMix/Toon   mix from : UTS3/NiloToon/Genshin/StartRail/ZoneZero/BRDF
+//imixgold@gmail.com 
+
 
 #if (SHADER_LIBRARY_VERSION_MAJOR ==7 && SHADER_LIBRARY_VERSION_MINOR >= 3) || (SHADER_LIBRARY_VERSION_MAJOR >= 8)
 
@@ -490,23 +490,9 @@
             }
 
 
-
-#if defined(_SHADINGGRADEMAP)
-
-#include "UniversalToonBodyShadingGradeMap.hlsl"
-
-#else //#if defined(_SHADINGGRADEMAP)
-
-#include "UniversalToonBodyDoubleShadeWithFeather.hlsl"
-
-#endif //#if defined(_SHADINGGRADEMAP)
+#include "iMixToonDrawCore.hlsl"
 
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET
             {
-#if defined(_SHADINGGRADEMAP)
                     return fragShadingGradeMap(i, facing);
-#else
-                    return fragDoubleShadeFeather(i, facing);
-#endif
-
             }
