@@ -1,5 +1,5 @@
 ﻿//iMix/Toon   mix from : UTS3/NiloToon/Genshin/StartRail/ZoneZero/BRDF
-//imixgold@gmail.com 
+//imixgold@gmail.com
 
 //Known Issues : Disabled "Depth Priming Mode" to support outline
 
@@ -52,7 +52,7 @@ Shader "iMix/Toon"
 		//
 		_HighColor ("HighColor", Color) = (0, 0, 0, 1)
 		//v.2.0.4 HighColor_Tex
-        [Header(HighLight)]
+		[Header(HighLight)]
 		_HighColor_Tex ("HighColor_Tex", 2D) = "white" { }
 		[Toggle(_)] _Is_LightColor_HighColor ("Is_LightColor_HighColor", Float) = 1
 		[Toggle(_)] _Is_NormalMapToHighColor ("Is_NormalMapToHighColor", Float) = 0
@@ -72,9 +72,9 @@ Shader "iMix/Toon"
 		_RimLight_InsideMask ("RimLight_InsideMask", Range(0.0001, 1)) = 0.0001
 		[Toggle(_)] _RimLight_FeatherOff ("RimLight_FeatherOff", Float) = 0
 		
-        
-        //RimLight
-        [Header(RimLight)]
+		
+		//RimLight
+		[Header(RimLight)]
 		[Toggle(_)] _LightDirection_MaskOn ("LightDirection_MaskOn", Float) = 0
 		_Tweak_LightDirection_MaskLevel ("Tweak_LightDirection_MaskLevel", Range(0, 0.5)) = 0
 		[Toggle(_)] _Add_Antipodean_RimLight ("Add_Antipodean_RimLight", Float) = 0
@@ -86,15 +86,15 @@ Shader "iMix/Toon"
 		_Set_RimLightMask ("Set_RimLightMask", 2D) = "white" { }
 		_Tweak_RimLightMaskLevel ("Tweak_RimLightMaskLevel", Range(-1, 1)) = 0
 		//StartRail RimLight
-        _RimLightWidth ("Rim light width (Default 1)", Range(0, 10)) = 1
+		_RimLightWidth ("Rim light width (Default 1)", Range(0, 10)) = 1
 		_RimLightThreshold ("Rim light threshold (Default 0.05)", Range(-1, 1)) = 0.05
 		_RimLightFadeout ("Rim light fadeout (Default 1)", Range(0.01, 1)) = 1
 		[HDR] _RimLightTintColor ("Rim light tint color (Default white)", Color) = (1, 1, 1)
 		_RimLightBrightness ("Rim light brightness (Default 1)", Range(0, 10)) = 1
 		_RimLightMixAlbedo ("Rim light mix albedo (Default 0.9)", Range(0, 1)) = 0.9
-        
-        
-        [Header(MatCap)]
+		
+		
+		[Header(MatCap)]
 		[Toggle(_)] _MatCap ("MatCap", Float) = 0
 		_MatCap_Sampler ("MatCap_Sampler", 2D) = "black" { }
 		//v.2.0.6
@@ -119,7 +119,7 @@ Shader "iMix/Toon"
 		//v.2.0.5
 		[Toggle(_)] _Is_Ortho ("Orthographic Projection for MatCap", Float) = 0
 		//// Angel Rings
-        [Header(Angeel Rings)]
+		[Header(Angeel Rings)]
 		[Toggle(_)] _AngelRing ("AngelRing", Float) = 0
 		_AngelRing_Sampler ("AngelRing_Sampler", 2D) = "black" { }
 		_AngelRing_Color ("AngelRing_Color", Color) = (1, 1, 1, 1)
@@ -129,7 +129,7 @@ Shader "iMix/Toon"
 		[Toggle(_)] _ARSampler_AlphaOn ("ARSampler_AlphaOn", Float) = 0
 		//
 		//v.2.0.7 Emissive
-        [Header(Emissive)]
+		[Header(Emissive)]
 		[KeywordEnum(SIMPLE, ANIMATION)] _EMISSIVE ("EMISSIVE MODE", Float) = 0
 		_Emissive_Tex ("Emissive_Tex", 2D) = "white" { }
 		[HDR]_Emissive_Color ("Emissive_Color", Color) = (0, 0, 0, 1)
@@ -148,8 +148,8 @@ Shader "iMix/Toon"
 
 
 		//Outline
-        [Header(Outline)]
-        [Toggle(_OUTLINE_ON)] _UseOutline ("Use outline (Default YES)", float) = 1
+		[Header(Outline)]
+		[Toggle(_OUTLINE_ON)] _UseOutline ("Use outline (Default YES)", float) = 1
 		[Toggle(_OUTLINE_UV7_SMOOTH_NORMAL)] _OutlineUseUV7SmoothNormal ("Use UV7 smooth normal (Default NO)", Float) = 0
 		_OutlineWidth ("Outline width (Default 1)", Range(0, 10)) = 1
 		_OutlineGamma ("Outline gamma (Default 16)", Range(1, 255)) = 16
@@ -157,9 +157,9 @@ Shader "iMix/Toon"
 		_test2 ("test1", Range(0, 1)) = 0
 		_test3 ("test1", Range(0, 1)) = 0
 
-	
+		
 		//GI Intensity
-        [Header(GI Intensity)]
+		[Header(GI Intensity)]
 		_GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
 		//For VR Chat under No effective light objects
 		_Unlit_Intensity ("Unlit_Intensity", Range(0, 4)) = 0
@@ -172,7 +172,7 @@ Shader "iMix/Toon"
 		[Toggle(_)] _Inverse_Z_Axis_BLD (" Inverse Z-Axis (Built-in Light Direction)", Float) = 1
 
 		
-        ////////////////// Avoid URP srp batcher error ///////////////////////////////
+		////////////////// Avoid URP srp batcher error ///////////////////////////////
 		_Metallic ("_Metallic", Range(0.0, 1.0)) = 0
 		_Smoothness ("Smoothness", Range(0.0, 1.0)) = 0.5
 		_MaskMap ("MaskMap", 2D) = "white" { }
@@ -203,7 +203,7 @@ Shader "iMix/Toon"
 	SubShader
 	{
 		Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
-        HLSLINCLUDE
+		HLSLINCLUDE
 		#pragma shader_feature_local _OUTLINE_ON
 		#pragma shader_feature_local _OUTLINE_UV7_SMOOTH_NORMAL
 		#pragma shader_feature_local _DRAW_OVERLAY_ON
@@ -235,6 +235,21 @@ Shader "iMix/Toon"
 
 			#pragma vertex vert
 			#pragma fragment frag
+			#ifndef DISABLE_RP_SHADERS
+				// -------------------------------------
+				// urp Material Keywords
+				// -------------------------------------
+				#pragma shader_feature_local _ALPHAPREMULTIPLY_ON
+				#pragma shader_feature_local _EMISSION
+				#pragma shader_feature_local _METALLICSPECGLOSSMAP
+				#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+				//            #pragma shader_feature _OCCLUSIONMAP
+
+				#pragma shader_feature_local _SPECULARHIGHLIGHTS_OFF
+				#pragma shader_feature_local _ENVIRONMENTREFLECTIONS_OFF
+				#pragma shader_feature_local _SPECULAR_SETUP
+				#pragma shader_feature_local _RECEIVE_SHADOWS_OFF
+			#endif
 
 			// -------------------------------------
 			// Lightweight Pipeline keywords
@@ -242,7 +257,6 @@ Shader "iMix/Toon"
 			#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 			#pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
 			#pragma multi_compile _ _SHADOWS_SOFT
-			#pragma multi_compile _ _FORWARD_PLUS
 
 			#pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE
 			// -------------------------------------
@@ -274,7 +288,7 @@ Shader "iMix/Toon"
 
 			ENDHLSL
 		}
-        //ToonCoreEnd
+		//ToonCoreEnd
 
 		Pass
 		{
@@ -303,7 +317,7 @@ Shader "iMix/Toon"
 			#include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
 			ENDHLSL
 		}
-        Pass
+		Pass
 		{
 			Name "DrawOverlay"
 			Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" "LightMode" = "UniversalForward" }
@@ -410,7 +424,7 @@ Shader "iMix/Toon"
 
 			ENDHLSL
 		}
-        Pass
+		Pass
 		{
 			Name "DrawOutline"
 			Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" "LightMode" = "UniversalForwardOnly" }
@@ -444,6 +458,5 @@ Shader "iMix/Toon"
 			
 			ENDHLSL
 		}
-
 	}
 }
