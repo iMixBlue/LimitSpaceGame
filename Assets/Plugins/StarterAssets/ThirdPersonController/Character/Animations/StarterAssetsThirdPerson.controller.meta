@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-guid: c6557b62dcd1f0541a7850a944b3e468
+guid: ba2b8a2c2102d984091437b4129a45e1
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 196526
-  packageName: Starter Assets - Third Person Character Controller | URP
-  packageVersion: 1.1.5
-  assetPath: Assets/StarterAssets/ThirdPersonController/Character/Animations/StarterAssetsThirdPerson.controller
-  uploadId: 592926

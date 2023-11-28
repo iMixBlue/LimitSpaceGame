@@ -12,7 +12,6 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public float zoom;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -44,11 +43,6 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
-
-		public void OnZoom(InputValue value)
-		{
-			SprintInput(value.isPressed);
-		}
 #endif
 
 
@@ -71,11 +65,8 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		
-		public void ZoomInput(float newZoomState)
-		{
-			zoom = newZoomState;
-		}		private void OnApplicationFocus(bool hasFocus)
+
+		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}
