@@ -42,4 +42,13 @@ public class Health : MonoBehaviour
             onHealthChanged();
         }
     }
+
+    void GetDemage(float damage)
+    {
+        currentHealth -= damage;
+        if (onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
+    }
 }
