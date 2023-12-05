@@ -842,7 +842,9 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: UNITY_PIPELINE_URP;MAGICACLOTH2
+    Android: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    Standalone: UNITY_PIPELINE_URP;MAGICACLOTH2;CROSS_PLATFORM_INPUT
+    iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
