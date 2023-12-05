@@ -25,12 +25,14 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _AREA_HAIR
   - _EMISSIVE_SIMPLE
   - _IS_ANGELRING_OFF
   - _IS_TRANSCLIPPING_OFF
   - _OUTLINE_ON
   - _OUTLINE_UV7_SMOOTH_NORMAL
   - _SHADINGGRADEMAP
+  - _StartRailRimlight_ON
   m_InvalidKeywords:
   - _
   - _IS_OUTLINE_CLIPPING_NO
@@ -73,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ef94af475ac6c454197e0127d124a3a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -82,6 +84,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BentNormalMapOS:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BodyCoolRamp:
+        m_Texture: {fileID: 2800000, guid: 202e4ff8b58ff314ca6603ea14e62cda, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BodyLightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BodyWarmRamp:
+        m_Texture: {fileID: 2800000, guid: 272edbfecdb591f4da33e78ecae4ad27, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -128,6 +142,26 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FaceLightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FaceMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HairCoolRamp:
+        m_Texture: {fileID: 2800000, guid: 202e4ff8b58ff314ca6603ea14e62cda, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HairLightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HairWarmRamp:
+        m_Texture: {fileID: 2800000, guid: 272edbfecdb591f4da33e78ecae4ad27, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _HeightMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -141,6 +175,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _IridescenceThicknessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LowerBodyLightMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -240,6 +278,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _UpperBodyLightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -255,7 +297,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
-    - _1st_ShadeColor_Feather: 0.0001
+    - _1st_ShadeColor_Feather: 0.05
     - _1st_ShadeColor_Step: 0.5
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0
@@ -285,6 +327,7 @@ Material:
     - _Anisotropy: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
+    - _Area: 2
     - _AutoRenderQueue: 1
     - _BaseColorOverridden: 0
     - _BaseColorVisible: 1
@@ -354,6 +397,8 @@ Material:
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _EnvironmentReflections: 1
+    - _FaceShadowOffset: -0.01
+    - _FaceShadowTransitionSoftness: 0.05
     - _Farthest_Distance: 100
     - _FirstShadeOverridden: 0
     - _FirstShadeVisible: 1
@@ -390,7 +435,7 @@ Material:
     - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 1
     - _Is_LightColor_1st_Shade: 1
-    - _Is_LightColor_2nd_Shade: 1
+    - _Is_LightColor_2nd_Shade: 0
     - _Is_LightColor_AR: 1
     - _Is_LightColor_Ap_RimLight: 1
     - _Is_LightColor_Base: 1
@@ -428,7 +473,7 @@ Material:
     - _OutlineOverridden: 0
     - _OutlineUseUV7SmoothNormal: 1
     - _OutlineVisible: 1
-    - _OutlineWidth: 1
+    - _OutlineWidth: 1.2
     - _Outline_Width: 1.5
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -440,14 +485,14 @@ Material:
     - _ReceiveShadows: 1
     - _ReceivesSSR: 1
     - _RefractionModel: 0
-    - _RimLight: 0
+    - _RimLight: 1
     - _RimLightBrightness: 1
-    - _RimLightFadeout: 1
-    - _RimLightMixAlbedo: 0.9
+    - _RimLightFadeout: 0.918
+    - _RimLightMixAlbedo: 0
     - _RimLightOverridden: 0
     - _RimLightThreshold: 0.05
     - _RimLightVisible: 1
-    - _RimLightWidth: 1
+    - _RimLightWidth: 0.3
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
@@ -461,7 +506,7 @@ Material:
     - _Scroll_EmissiveV: 0
     - _SecondShadeOverridden: 0
     - _SecondShadeVisible: 1
-    - _Set_SystemShadowsToBase: 1
+    - _Set_SystemShadowsToBase: 0
     - _ShadeColor_Step: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
@@ -527,12 +572,13 @@ Material:
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
-    - _Unlit_Intensity: 1
+    - _Unlit_Intensity: 0
     - _UseDrawOverlay: 0
     - _UseEmissiveIntensity: 0
     - _UseOutline: 1
     - _UseShadowThreshold: 0
-    - _Use_1stAs2nd: 1
+    - _UseStartRailRimlight: 1
+    - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 1
     - _WorkflowMode: 1
     - _ZOverDrawMode: 0
@@ -552,7 +598,7 @@ Material:
     - _utsVersionY: 9
     - _utsVersionZ: 5
     m_Colors:
-    - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _1st_ShadeColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _AngelRingMaskColor: {r: 0, g: 1, b: 0, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}

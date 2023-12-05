@@ -121,6 +121,7 @@ CBUFFER_START(UnityPerMaterial)
     float _CubemapMip;
     float _FresnelPow;
     float4 _FresnelColor;
+    
     half _ToonRampMapFac;
     float _CelShadowBias;
 

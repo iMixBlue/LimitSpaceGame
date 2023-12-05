@@ -3,23 +3,35 @@
 
 //Known Issues : Disabled "Depth Priming Mode" to support outline
 
-Shader "iMix/Toon"
+Shader "iMixToonShader"
 {
 	Properties
 	{
-		_MainTex ("BaseMap", 2D) = "white" { }
+		[KeywordEnum(None, Body, Hair, Face)] _Area ("Material area", float) = 0
+		[Header(Base Color Map)]
 		_BaseMap ("BaseMap", 2D) = "white" { }
 		_BaseColor ("BaseColor", Color) = (1, 1, 1, 1)
+
+		[Header(Light Map)]
+		[NoScaleOffset] _BodyLightMap ("Body light map (Default black)", 2D) = "black" { }
+		[NoScaleOffset] _HairLightMap ("Hair light map (Default black)", 2D) = "black" { }
+
+		[Header(Ramp Map)]
+		[NoScaleOffset] _HairCoolRamp ("Hair cool ramp (Default white)", 2D) = "white" { }
+		[NoScaleOffset] _HairWarmRamp ("Hair warm ramp (Default white)", 2D) = "white" { }
+		[NoScaleOffset] _BodyCoolRamp ("Body cool ramp {Default white}", 2D) = "white" { }
+		[NoScaleOffset] _BodyWarmRamp ("Body warm ramp (Default white)", 2D) = "white" { }
+		
 
 		_Color ("Color", Color) = (1, 1, 1, 1)
 		//
 		[Toggle(_)] _Is_LightColor_Base ("Is_LightColor_Base", Float) = 1
-		_1st_ShadeMap ("1st_ShadeMap", 2D) = "white" { }
+		[NoScaleOffset]_1st_ShadeMap ("1st_ShadeMap", 2D) = "white" { }
 		//v.2.0.5
 		[Toggle(_)] _Use_BaseAs1st ("Use BaseMap as 1st_ShadeMap", Float) = 0
-		_1st_ShadeColor ("1st_ShadeColor", Color) = (1, 1, 1, 1)
+		[NoScaleOffset]_1st_ShadeColor ("1st_ShadeColor", Color) = (1, 1, 1, 1)
 		[Toggle(_)] _Is_LightColor_1st_Shade ("Is_LightColor_1st_Shade", Float) = 1
-		_2nd_ShadeMap ("2nd_ShadeMap", 2D) = "white" { }
+		[NoScaleOffset]_2nd_ShadeMap ("2nd_ShadeMap", 2D) = "white" { }
 		//v.2.0.5
 		[Toggle(_)] _Use_1stAs2nd ("Use 1st_ShadeMap as 2nd_ShadeMap", Float) = 0
 		_2nd_ShadeColor ("2nd_ShadeColor", Color) = (1, 1, 1, 1)
@@ -28,13 +40,9 @@ Shader "iMix/Toon"
 		_BumpScale ("Normal Scale", Range(0, 1)) = 1
 		[Toggle(_)] _Is_NormalMapToBase ("Is_NormalMapToBase", Float) = 0
 		//v.2.0.4.4
-		[Toggle(_)] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float) = 1
+		[Toggle(_)] _Set_SystemShadowsToBase ("Receive Self Shadows", Float) = 1
 		_Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
-		//v.2.0.6
-		_BaseColor_Step ("BaseColor_Step", Range(0, 1)) = 0.5
-		_BaseShade_Feather ("Base/Shade_Feather", Range(0.0001, 1)) = 0.0001
-		_ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0
-		_1st2nd_Shades_Feather ("1st/2nd_Shades_Feather", Range(0.0001, 1)) = 0.0001
+		//
 		_1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
 		_1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
 		_2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0
@@ -43,17 +51,21 @@ Shader "iMix/Toon"
 		_StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
 		[Toggle(_)] _Is_Filter_HiCutPointLightColor ("PointLights HiCut_Filter (ForwardAdd Only)", Float) = 1
 		//
-		_Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" { }
-		_Set_2nd_ShadePosition ("Set_2nd_ShadePosition", 2D) = "white" { }
-		_ShadingGradeMap ("ShadingGradeMap", 2D) = "white" { }
+		[NoScaleOffset]_ShadingGradeMap ("ShadingGradeMap", 2D) = "white" { }
 		//v.2.0.6
 		_Tweak_ShadingGradeMapLevel ("Tweak_ShadingGradeMapLevel", Range(-0.5, 0.5)) = 0
 		_BlurLevelSGM ("Blur Level of ShadingGradeMap", Range(0, 10)) = 0
 		//
 		_HighColor ("HighColor", Color) = (0, 0, 0, 1)
-		//v.2.0.4 HighColor_Tex
-		[Header(HighLight)]
-		_HighColor_Tex ("HighColor_Tex", 2D) = "white" { }
+
+		[Header(Face)]
+		[NoScaleOffset] _FaceMap ("Face SDF map (Default black)", 2D) = "black" { }
+		_FaceShadowOffset ("Face shadow offset (Default -0.01)", Range(-1, 1)) = -0.01
+		_FaceShadowTransitionSoftness ("Face shadow transition softness (Default 0.05)", Range(0, 1)) = 0.05
+
+		//Specular
+		[Header(Specular)]
+		[NoScaleOffset]_HighColor_Tex ("HighColor_Tex", 2D) = "white" { }
 		[Toggle(_)] _Is_LightColor_HighColor ("Is_LightColor_HighColor", Float) = 1
 		[Toggle(_)] _Is_NormalMapToHighColor ("Is_NormalMapToHighColor", Float) = 0
 		_HighColor_Power ("HighColor_Power", Range(0, 1)) = 0
@@ -61,20 +73,19 @@ Shader "iMix/Toon"
 		[Toggle(_)] _Is_BlendAddToHiColor ("Is_BlendAddToHiColor", Float) = 0
 		[Toggle(_)] _Is_UseTweakHighColorOnShadow ("Is_UseTweakHighColorOnShadow", Float) = 0
 		_TweakHighColorOnShadow ("TweakHighColorOnShadow", Range(0, 1)) = 0
-		//HiColorMask
-		_Set_HighColorMask ("Set_HighColorMask", 2D) = "white" { }
+		
+		//UTS3 RimLight
+		[Header(RimLight)]
+		[Toggle(_)] _RimLight ("Use RimLight", Float) = 0
+		[Header(UTS3 RimLight)]
+		[NoScaleOffset]_Set_HighColorMask ("Set_HighColorMask", 2D) = "white" { }
 		_Tweak_HighColorMaskLevel ("Tweak_HighColorMaskLevel", Range(-1, 1)) = 0
-		[Toggle(_)] _RimLight ("RimLight", Float) = 0
 		_RimLightColor ("RimLightColor", Color) = (1, 1, 1, 1)
 		[Toggle(_)] _Is_LightColor_RimLight ("Is_LightColor_RimLight", Float) = 1
 		[Toggle(_)] _Is_NormalMapToRimLight ("Is_NormalMapToRimLight", Float) = 0
 		_RimLight_Power ("RimLight_Power", Range(0, 1)) = 0.1
 		_RimLight_InsideMask ("RimLight_InsideMask", Range(0.0001, 1)) = 0.0001
 		[Toggle(_)] _RimLight_FeatherOff ("RimLight_FeatherOff", Float) = 0
-		
-		
-		//RimLight
-		[Header(RimLight)]
 		[Toggle(_)] _LightDirection_MaskOn ("LightDirection_MaskOn", Float) = 0
 		_Tweak_LightDirection_MaskLevel ("Tweak_LightDirection_MaskLevel", Range(0, 0.5)) = 0
 		[Toggle(_)] _Add_Antipodean_RimLight ("Add_Antipodean_RimLight", Float) = 0
@@ -83,9 +94,13 @@ Shader "iMix/Toon"
 		_Ap_RimLight_Power ("Ap_RimLight_Power", Range(0, 1)) = 0.1
 		[Toggle(_)] _Ap_RimLight_FeatherOff ("Ap_RimLight_FeatherOff", Float) = 0
 		//RimLightMask
-		_Set_RimLightMask ("Set_RimLightMask", 2D) = "white" { }
+		[NoScaleOffset]_Set_RimLightMask ("Set_RimLightMask", 2D) = "white" { }
 		_Tweak_RimLightMaskLevel ("Tweak_RimLightMaskLevel", Range(-1, 1)) = 0
+		
+		
 		//StartRail RimLight
+		[Header(Start Rail RimLight)]
+		[Toggle(_StartRailRimlight_ON)] _UseStartRailRimlight ("Use Start Rail Rimlight (Default NO)", float) = 0
 		_RimLightWidth ("Rim light width (Default 1)", Range(0, 10)) = 1
 		_RimLightThreshold ("Rim light threshold (Default 0.05)", Range(-1, 1)) = 0.05
 		_RimLightFadeout ("Rim light fadeout (Default 1)", Range(0.01, 1)) = 1
@@ -113,7 +128,7 @@ Shader "iMix/Toon"
 		[Toggle(_)] _Is_UseTweakMatCapOnShadow ("Is_UseTweakMatCapOnShadow", Float) = 0
 		_TweakMatCapOnShadow ("TweakMatCapOnShadow", Range(0, 1)) = 0
 		//MatcapMask
-		_Set_MatcapMask ("Set_MatcapMask", 2D) = "white" { }
+		[NoScaleOffset]_Set_MatcapMask ("Set_MatcapMask", 2D) = "white" { }
 		_Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
 		[Toggle(_)] _Inverse_MatcapMask ("Inverse_MatcapMask", Float) = 0
 		//v.2.0.5
@@ -131,7 +146,7 @@ Shader "iMix/Toon"
 		//v.2.0.7 Emissive
 		[Header(Emissive)]
 		[KeywordEnum(SIMPLE, ANIMATION)] _EMISSIVE ("EMISSIVE MODE", Float) = 0
-		_Emissive_Tex ("Emissive_Tex", 2D) = "white" { }
+		[NoScaleOffset]_Emissive_Tex ("Emissive_Tex", 2D) = "white" { }
 		[HDR]_Emissive_Color ("Emissive_Color", Color) = (0, 0, 0, 1)
 		_Base_Speed ("Base_Speed", Float) = 0
 		_Scroll_EmissiveU ("Scroll_EmissiveU", Range(-1, 1)) = 0
@@ -173,10 +188,29 @@ Shader "iMix/Toon"
 
 		
 		////////////////// Avoid URP srp batcher error ///////////////////////////////
-		_Metallic ("_Metallic", Range(0.0, 1.0)) = 0
-		_Smoothness ("Smoothness", Range(0.0, 1.0)) = 0.5
-		_MaskMap ("MaskMap", 2D) = "white" { }
+		_Metallic("_Metallic", Range(0.0, 1.0)) = 0
+        _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
+		[NoScaleOffset]_MaskMap ("MaskMap", 2D) = "white" { }
 		////////////////// Avoid URP srp batcher error ///////////////////////////////
+		/// 
+		[Header(PBR)]
+		_SSSWeightPBR ("PBR SSS Weight", Range(0, 1)) = 0
+		_sssColor ("_sssColor", color) = (1, 1, 1, 1)
+		_roughness ("Roughness", Range(0, 1)) = 0.555
+		_metallic ("Metallic", Range(0, 1)) = 0.495
+		_subsurface ("Subsurface", Range(0, 1)) = 0.467
+		_anisotropic ("Anisotropic", Range(0, 1)) = 0
+		_ior ("index of refraction", Range(0, 10)) = 10
+
+		[Header(PBR Env Light)][Space(10)]
+		[NoScaleOffset] _Cubemap ("Envmap", cube) = "_Skybox" { }
+		_CubemapMip ("Envmap Mip", Range(0, 7)) = 0
+		_IBL_LUT ("Precomputed integral LUT", 2D) = "white" { }
+		_FresnelPow ("FresnelPow", Range(0, 5)) = 1
+		_FresnelColor ("FresnelColor", Color) = (1, 1, 1, 1)
+		_EdgeColor ("Edge Color", Color) = (1, 1, 1, 1)
+
+		
 
 
 		[Header(Surface Options)]
@@ -204,10 +238,14 @@ Shader "iMix/Toon"
 	{
 		Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
 		HLSLINCLUDE
+		#pragma shader_feature_local _AREA_FACE
+		#pragma shader_feature_local _AREA_HAIR
+		#pragma shader_feature_local _AREA_BODY
 		#pragma shader_feature_local _OUTLINE_ON
 		#pragma shader_feature_local _OUTLINE_UV7_SMOOTH_NORMAL
 		#pragma shader_feature_local _DRAW_OVERLAY_ON
 		#pragma shader_feature_local _EMISSION_ON
+		#pragma shader_feature_local _StartRailRimlight_ON
 		ENDHLSL
 
 		//ToonCoreStart
@@ -234,7 +272,7 @@ Shader "iMix/Toon"
 			#pragma exclude_renderers d3d11_9x
 
 			#pragma vertex vert
-			#pragma fragment frag
+			#pragma fragment fragShadingGradeMap
 			#ifndef DISABLE_RP_SHADERS
 				// -------------------------------------
 				// urp Material Keywords
@@ -281,10 +319,13 @@ Shader "iMix/Toon"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
-			#include "iMixToonInput.hlsl"
-			#include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
-			#include "iMixToonHead.hlsl"
-			#include "iMixToonBody.hlsl"
+
+				
+            #include "iMixToonDrawCore.hlsl"
+
+
+
+
 
 			ENDHLSL
 		}
@@ -384,8 +425,6 @@ Shader "iMix/Toon"
 			// -------------------------------------
 			// Material Keywords
 			#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-
 
 			#include "iMixToonInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"

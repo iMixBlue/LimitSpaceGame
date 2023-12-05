@@ -261,6 +261,8 @@ float4 frag(Varyings input, bool isFrontFace : SV_IsFrontFace) : SV_TARGET
     }
     #endif
 
+    //RimLight
+
     float linearEyeDepth = LinearEyeDepth(input.positionCS.z, _ZBufferParams);
     float3 normalVS = mul((float3x3)UNITY_MATRIX_V,normalWS);
     float2 uvOffset = float2(sign(normalVS.x),0) * _RimLightWidth / (1 + linearEyeDepth) / 100;
@@ -273,6 +275,9 @@ float4 frag(Varyings input, bool isFrontFace : SV_IsFrontFace) : SV_TARGET
     rimLightColor *= _RimLightTintColor;
     rimLightColor *= _RimLightBrightness;
 
+    
+    //Emmission
+    
     float3 emissionColor = 0;
     #if _EMISSION_ON
     {

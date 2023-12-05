@@ -5,13 +5,11 @@
 #pragma warning (disable : 3571) //  pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them at line XXXX (on d3d11)
 #pragma warning (disable : 3206) // "Implicit Truncation of vector type" warning code to disable
 
+
 #ifndef UCTS_LWRP_INCLUDED
 #define UCTS_LWRP_INCLUDED
 
 #define UCTS_LWRP 1
-
-
-
 
 #define MAINLIGHT_NOT_FOUND -2
 #define MAINLIGHT_IS_MAINLIGHT -1
@@ -32,17 +30,62 @@
 
 
 
-
-
-
-
 #if defined(UNITY_PASS_PREPASSBASE) || defined(UNITY_PASS_DEFERRED) || defined(UNITY_PASS_SHADOWCASTER)
 #undef FOG_LINEAR
 #undef FOG_EXP
 #undef FOG_EXP2
 #endif
 
-//#include "UCTS_AutoLight.cginc" 
+
+#if (SHADER_LIBRARY_VERSION_MAJOR ==7 && SHADER_LIBRARY_VERSION_MINOR >= 3) || (SHADER_LIBRARY_VERSION_MAJOR >= 8)
+
+#ifdef _ADDITIONAL_LIGHTS
+	#ifndef  REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
+		#   define REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
+	#endif
+#endif
+#else
+	#ifdef _MAIN_LIGHT_SHADOWS
+		//#  if !defined(_MAIN_LIGHT_SHADOWS_CASCADE)
+		#ifndef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
+			#    define REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
+		#endif
+		//#  endif
+	#endif
+	#ifdef _ADDITIONAL_LIGHTS
+		#ifndef  REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
+			#   define REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
+		#endif
+	#endif
+#endif
+
+#if (UNITY_VERSION >= 202229) && (UNITY_VERSION < 202310)
+	#define sampler_MainLightShadowmapTexture sampler_LinearClampCompare
+	#define sampler_AdditionalLightsShadowmapTexture sampler_LinearClampCompare
+#endif
+
+#if USE_FORWARD_PLUS && defined(LIGHTMAP_ON) && defined(LIGHTMAP_SHADOW_MIXING)
+	#define FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK if (_AdditionalLightsColor[lightIndex].a > 0.0h) continue;
+#else
+	#define FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK
+#endif
+
+#if USE_FORWARD_PLUS
+	#define UTS_LIGHT_LOOP_BEGIN(lightCount) { \
+	uint lightIndex; \
+	ClusterIterator _urp_internal_clusterIterator = ClusterInit(inputData.normalizedScreenSpaceUV, i.posWorld.xyz, 0); \
+	[loop] while (ClusterNext(_urp_internal_clusterIterator, lightIndex)) { \
+	    lightIndex += URP_FP_DIRECTIONAL_LIGHTS_COUNT; \
+	    FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK
+	#define UTS_LIGHT_LOOP_END } }
+#else
+	#define UTS_LIGHT_LOOP_BEGIN(lightCount) \
+	for (uint loopCounter = 0u; loopCounter < lightCount; ++loopCounter) {
+
+		#define UTS_LIGHT_LOOP_END }
+#endif
+
+
 #if 1
 
 // Legacy for compatibility with existing shaders

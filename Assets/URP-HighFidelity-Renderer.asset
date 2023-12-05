@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8720115544269250981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db9e4e2e16ff6d4684a942e53a5d4a5, type: 3}
+  m_Name: CelHairShadowStencil
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    hairShadowColor: {r: 0.6132076, g: 0.60163397, b: 0.5698202, a: 0}
+    offset: 0.004
+    stencilReference: 6
+    stencilComparison: 3
+    passEvent: 300
+    hairLayer:
+      serializedVersion: 2
+      m_Bits: 131072
+    queueMin: 2000
+    queueMax: 3000
+    faceTex: {fileID: 2800000, guid: bb692a22c3f60814e967958e0ff251b1, type: 3}
+    faceLayer:
+      serializedVersion: 2
+      m_Bits: 65664
+    material: {fileID: 2100000, guid: bd04c3c28cf8a7841af96a4706fbd200, type: 2}
 --- !u!114 &-5766178812061479856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +96,8 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
   - {fileID: -5766178812061479856}
-  m_RendererFeatureMap: adc0de57c6d2eee5500cb1c3eb6afaaf
+  - {fileID: -8720115544269250981}
+  m_RendererFeatureMap: adc0de57c6d2eee5500cb1c3eb6afaaf5b1e78171dedfb86
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}

@@ -2,7 +2,6 @@
 //imixgold@gmail.com 
 
 
-
 #ifndef UNIVERSAL_TOON_INPUT_INCLUDED
 #define UNIVERSAL_TOON_INPUT_INCLUDED
 
@@ -10,15 +9,23 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
 
+//StartRail Include
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
+
 #define fixed  half
 #define fixed3 half3
 #define fixed4 half4
 
+
+
+
 CBUFFER_START(UnityPerMaterial)
-float _utsTechnique;
-float4 _MainTex_ST;
+
 
 float4 _Color;
+
 fixed _Use_BaseAs1st;
 fixed _Use_1stAs2nd;
 fixed _Is_LightColor_Base;
@@ -34,13 +41,6 @@ float4 _NormalMap_ST;
 fixed _Is_NormalMapToBase;
 fixed _Set_SystemShadowsToBase;
 float _Tweak_SystemShadowsLevel;
-float _BaseColor_Step;
-float _BaseShade_Feather;
-
-float4 _Set_1st_ShadePosition_ST;
-float _ShadeColor_Step;
-float _1st2nd_Shades_Feather;
-float4 _Set_2nd_ShadePosition_ST;
 
 float4 _ShadingGradeMap_ST;
 
@@ -84,6 +84,7 @@ float _Ap_RimLight_Power;
 fixed _Ap_RimLight_FeatherOff;
 float4 _Set_RimLightMask_ST;
 float _Tweak_RimLightMaskLevel;
+
 //StartRailRimLight
 float _RimLightWidth;
 float _RimLightThreshold;
@@ -91,6 +92,7 @@ float _RimLightFadeout;
 float3 _RimLightTintColor;
 float _RimLightBrightness;
 float _RimLightMixAlbedo;
+
 
 
 fixed _MatCap;
@@ -176,35 +178,72 @@ float _test2;
 float _test3;
 
 
-//
+#if _AREA_FACE
+float _FaceShadowOffset;
+float _FaceShadowTransitionSoftness;
+#endif
 // 
 //
 float4 _BaseMap_ST;
 half4 _BaseColor;
 half4 _SpecColor;
 half4 _EmissionColor;
+
 half _Cutoff;
+
 half _Smoothness;
 half _Metallic;
 half _BumpScale;
 half _OcclusionStrength;
 half _Surface;
 
+//PBR
+float _SSSWeightPBR;
+
+float _roughness;
+float _metallic;
+float _anisotropic;
+float _subsurface;
+float4 _sssColor;
+float _ior;
+
+//EnvLight
+float _WeightEnvLight;
+samplerCUBE _Cubemap;
+float _CubemapMip;
+float _FresnelPow;
+float4 _FresnelColor;
+
 
 CBUFFER_END
+///////////////CBURRER END///////////
+/////////////////////////////////////
 
-//sampler2D _MainTex;
-//sampler2D _1st_ShadeMap;
-//sampler2D _2nd_ShadeMap;
-//sampler2D _NormalMap;
 
-TEXTURE2D(_MainTex); SAMPLER(sampler_MainTex);
+//Not in Shader Varient
+float3 _HeadForward;
+float3 _HeadRight;
+
+#if _AREA_FACE
+TEXTURE2D(_FaceMap); SAMPLER(sampler_FaceMap);
+TEXTURE2D(_BodyCoolRamp); SAMPLER(sampler_BodyCoolRamp);
+TEXTURE2D(_BodyWarmRamp); SAMPLER(sampler_BodyWarmRamp);
+#elif _AREA_HAIR
+TEXTURE2D(_HairLightMap); SAMPLER(sampler_HairLightMap);
+TEXTURE2D(_HairCoolRamp); SAMPLER(sampler_HairCoolRamp);
+TEXTURE2D(_HairWarmRamp); SAMPLER(sampler_HairWarmRamp);
+#elif _AREA_BODY
+TEXTURE2D(_BodyLightMap); SAMPLER(sampler_BodyLightMap);
+TEXTURE2D(_BodyCoolRamp); SAMPLER(sampler_BodyCoolRamp);
+TEXTURE2D(_BodyWarmRamp); SAMPLER(sampler_BodyWarmRamp);
+#endif
+
+TEXTURE2D(_IBL_LUT); SAMPLER(sampler_IBL_LUT);
+
 TEXTURE2D(_1st_ShadeMap);
 TEXTURE2D(_2nd_ShadeMap);
 TEXTURE2D(_NormalMap);
 
-sampler2D _Set_1st_ShadePosition; 
-sampler2D _Set_2nd_ShadePosition;
 sampler2D _ShadingGradeMap;
 sampler2D _HighColor_Tex;
 sampler2D _Set_HighColorMask;
