@@ -24,6 +24,7 @@ Shader "iMixToonShader"
 		
 
 		_Color ("Color", Color) = (1, 1, 1, 1)
+		_MainLightColorUsage ("Main light color usage (Default 1)", Range(0, 1)) = 1
 		//
 		[Toggle(_)] _Is_LightColor_Base ("Is_LightColor_Base", Float) = 1
 		[NoScaleOffset]_1st_ShadeMap ("1st_ShadeMap", 2D) = "white" { }

@@ -26,6 +26,7 @@ CBUFFER_START(UnityPerMaterial)
 
 float4 _Color;
 
+float _MainLightColorUsage;
 fixed _Use_BaseAs1st;
 fixed _Use_1stAs2nd;
 fixed _Is_LightColor_Base;

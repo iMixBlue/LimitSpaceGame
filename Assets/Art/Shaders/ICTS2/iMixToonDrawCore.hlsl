@@ -286,6 +286,7 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 
 	#ifdef _IS_PASS_FWDBASE
 		float3 Set_LightColor = lightColor.rgb;
+		float3 startRailMainLightColor = lerp(desaturation(Set_LightColor),Set_LightColor,_MainLightColorUsage);
 		float3 Set_BaseColor = lerp((_BaseMap_var.rgb * _BaseColor.rgb), ((_BaseMap_var.rgb * _BaseColor.rgb) * Set_LightColor), _Is_LightColor_Base);
 		//v.2.0.5
 		float4 _1st_ShadeMap_var = lerp(SAMPLE_TEXTURE2D(_1st_ShadeMap, sampler_BaseMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _BaseMap_var, _Use_BaseAs1st);

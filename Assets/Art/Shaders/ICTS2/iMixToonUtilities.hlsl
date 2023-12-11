@@ -25,6 +25,44 @@ fixed3 DecodeLightProbe(fixed3 N)
 {
 	return ShadeSH9(float4(N, 1));
 }
+struct Gradient
+{
+    int colorsLength;
+    float4 colors[8];
+};
+
+Gradient GradientConstruct()
+{
+    Gradient g;
+    g.colorsLength = 2;
+    g.colors[0] = float4(1,1,1,0);
+    g.colors[1] = float4(1,1,1,1);
+    g.colors[2] = float4(0,0,0,0);
+    g.colors[3] = float4(0,0,0,0);
+    g.colors[4] = float4(0,0,0,0);
+    g.colors[5] = float4(0,0,0,0);
+    g.colors[6] = float4(0,0,0,0);
+    g.colors[7] = float4(0,0,0,0);
+    return g;
+}
+float3 SampleGradient(Gradient Gradient, float Time)
+{
+    float3 color = Gradient.colors[0].rgb;
+    for(int c = 1; c< Gradient.colorsLength;c++){
+        float colorPos = saturate((Time - Gradient.colors[c-1].w) / (Gradient.colors[c].w - Gradient.colors[c-1].w)) * step(c, Gradient.colorsLength -1);
+        color = lerp(color,Gradient.colors[c].rgb, colorPos);
+    }
+    #ifdef UNITY_COLORSPACE_GAMMA
+        COLOR = LinearToSRGB(color);
+    #endif
+        return color;
+}
+float3 desaturation(float3 color)
+{
+float3 grayXfer = float3(0.3,0.59,0.11);
+float grayf = dot(color,grayXfer);
+return float3(grayf,grayf,grayf);
+}
 
 
 inline void InitializeStandardLitSurfaceDataUTS(float2 uv, out SurfaceData outSurfaceData)
