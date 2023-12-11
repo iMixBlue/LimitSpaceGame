@@ -578,6 +578,7 @@ Material:
     - _LightMapStrength: 1
     - _LightingDirectionFix: 0
     - _LinkDetailsWithBase: 1
+    - _MainLightColorUsage: 1
     - _MatCap: 0
     - _MaterialID: 1
     - _Metallic: 0
