@@ -274,7 +274,7 @@ Shader "iMixToonShader"
 
 			#pragma vertex vert
 			#pragma fragment fragShadingGradeMap
-			#ifndef DISABLE_RP_SHADERS
+			// #ifndef DISABLE_RP_SHADERS
 				// -------------------------------------
 				// urp Material Keywords
 				// -------------------------------------
@@ -288,7 +288,7 @@ Shader "iMixToonShader"
 				#pragma shader_feature_local _ENVIRONMENTREFLECTIONS_OFF
 				#pragma shader_feature_local _SPECULAR_SETUP
 				#pragma shader_feature_local _RECEIVE_SHADOWS_OFF
-			#endif
+			// #endif
 
 			// -------------------------------------
 			// Lightweight Pipeline keywords

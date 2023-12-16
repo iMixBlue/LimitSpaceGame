@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30bf25ae96fec1b489b29d13517fdb58, type: 3}
+  m_Name: Day1_choice
+  m_EditorClassIdentifier: 
+  state: 0
+  DefaultSelectIndex: 0
+  datas:
+  - Content: "\u4E00\u53EA\u8001\u9F20\uFF1F\u6211\u4E00\u5B9A\u662F\u7761\u7CCA\u6D82\u4E86"
+    bQuickLocate: 0
+  - Content: "\u4F38\u624B\u53BB\u62FF\u7B24\u5E1A"
+    bQuickLocate: 0
+  - Content: "\u4F60\u8981\u70B9\u4EC0\u4E48"
+    bQuickLocate: 0
+  - Content: "\u53D6\u6D88"
+    bQuickLocate: 0
+  executors:
+  - {fileID: 11400000, guid: 2d78ed0b83307bd4d8b1366fffe95bfa, type: 2}
+  - {fileID: 11400000, guid: dda64d5d455283b47b9b19a0f8d1852e, type: 2}
+  - {fileID: 11400000, guid: 316b6b0f364904c409e5417534e0b626, type: 2}

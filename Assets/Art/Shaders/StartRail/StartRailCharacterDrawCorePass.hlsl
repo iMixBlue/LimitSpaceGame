@@ -132,7 +132,7 @@ float4 frag(Varyings input, bool isFrontFace : SV_IsFrontFace) : SV_TARGET
     float mainLightShadowForRamp = 1;
     int rampRowIndex = 0;
     int rampRowNum = 1;
-    #if _AREA_HAIR || _AREA_UPPERBODY || _AREA_LOWERBODY
+    #if _AREA_HAIR || _AREA_BODY || _AREA_LOWERBODY
     {
        float NoL = dot(normalWS, lightDirectionWS);
        //mainLightShadow = step(0,NoL);
