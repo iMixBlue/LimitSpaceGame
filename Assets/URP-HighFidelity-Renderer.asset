@@ -29,6 +29,23 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 65664
     material: {fileID: 2100000, guid: bd04c3c28cf8a7841af96a4706fbd200, type: 2}
+--- !u!114 &-7637686880753472322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7afc38c2d1fc5794db8af8261ba5f3b1, type: 3}
+  m_Name: Custom Pass
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 1
+  Event: 250
 --- !u!114 &-5766178812061479856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +114,8 @@ MonoBehaviour:
   - {fileID: -1878332245247344467}
   - {fileID: -5766178812061479856}
   - {fileID: -8720115544269250981}
-  m_RendererFeatureMap: adc0de57c6d2eee5500cb1c3eb6afaaf5b1e78171dedfb86
+  - {fileID: -7637686880753472322}
+  m_RendererFeatureMap: adc0de57c6d2eee5500cb1c3eb6afaaf5b1e78171dedfb86be2c07873f7c0196
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
