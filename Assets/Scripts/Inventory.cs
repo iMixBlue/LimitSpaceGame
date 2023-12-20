@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
-    Dictionary<string, Usable> _inventory = new Dictionary<string, Usable>();
+    Dictionary<item, Usable> _inventory = new Dictionary<item, Usable>();
     int _coin = 0;
-
-    public void AddItem(string name, Usable item)
+    public enum item
     {
-        _inventory.Add(name, item);
+        Diminution
     }
-    public Usable GetItem(string name) {  return _inventory[name]; }
+
+    public void AddItem(item theItem, Usable item)
+    {
+        Debug.Log(theItem.ToString() + " " + "Added!");
+        _inventory.Add(theItem, item);
+    }
+    public Usable GetItem(item theItem) {  return _inventory[theItem]; }
 
     public void ReceiveCoin() { _coin++; }
 

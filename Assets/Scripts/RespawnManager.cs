@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespawnManager : MonoBehaviour
+public class RespawnManager
 {
     GameObject _player;
     Vector3 _respawnPosition;

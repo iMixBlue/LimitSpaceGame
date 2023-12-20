@@ -13,11 +13,19 @@ public class Character : MonoBehaviour
         _respawnManager = new RespawnManager(this.gameObject);
     }
 
-    public void AddItem(string name, Usable item)
+    private void Update()
     {
-        _inventory.AddItem(name, item);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UseItem(Inventory.item.Diminution);
+        }
     }
-    public void UseItem(string item) { _inventory.GetItem(item).Use(); }
+
+    public void AddItem(Inventory.item theItem, Usable item)
+    {
+        _inventory.AddItem(theItem, item);
+    }
+    public void UseItem(Inventory.item theItem) { _inventory.GetItem(theItem).Use(); }
     public void ReceiveCoin() { _inventory.ReceiveCoin(); }
 
     public int CurrentCoin() { return _inventory.CurrentCoin(); }
