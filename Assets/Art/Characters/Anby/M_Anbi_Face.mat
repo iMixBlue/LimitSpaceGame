@@ -27,7 +27,6 @@ Material:
   m_ValidKeywords:
   - _AREA_FACE
   - _EMISSIVE_SIMPLE
-  - _IS_ANGELRING_OFF
   - _OUTLINE_ON
   - _OUTLINE_UV7_SMOOTH_NORMAL
   - _RECEIVE_SHADOWS_OFF
@@ -36,6 +35,7 @@ Material:
   - _FACE_SHADOW_MAP
   - _HAFTONESHAPES_DOT
   - _HALFTONESHAPE_DOT
+  - _IS_ANGELRING_OFF
   - _IS_CLIPPING_OFF
   - _IS_OUTLINE_CLIPPING_NO
   - _OUTLINE_NML
@@ -58,6 +58,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AngelRing:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AngelRingTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -94,7 +102,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BodyLightMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d483857a444a0b14987848f240527e8a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BodyWarmRamp:
@@ -170,7 +178,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HairLightMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 82f611cfdb107504f80bb971df5c7aee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HairSpecNoiseMap:
@@ -366,7 +374,7 @@ Material:
     - Vector1_c89cb8dc56774a9583c7b9c3a5725c4c: 0
     - Vector1_e5b6f1488dec4326bd8bbd0e05156810: 0
     - _1st2nd_Shades_Feather: 0.0001
-    - _1st_ShadeColor_Feather: 0.75
+    - _1st_ShadeColor_Feather: 0.6
     - _1st_ShadeColor_Step: 0.5
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0
@@ -391,7 +399,7 @@ Material:
     - _AlphaRemapMin: 0
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
-    - _AngelRing: 0
+    - _AngelRing: 1
     - _AngelRingOverridden: 0
     - _AngelRingVisible: 1
     - _Anisotropy: 0
@@ -498,8 +506,11 @@ Material:
     - _HafltoneFadeDistance: 10
     - _HairSpecExponent: 128
     - _HairSpecNoiseStrength: 1
+    - _HairSpecularIntensity: 0
+    - _HairSpecularRange: 0
     - _HairSpecularSize: 0.8
     - _HairSpecularSmoothness: 0.1
+    - _HairSpecularViewRange: 0
     - _HalfToneDiffuseStep: 0
     - _HalfToneEnabled: 0
     - _HalfToneIncludeReceivedShadow: 0
@@ -632,7 +643,7 @@ Material:
     - _RimLightSmootness: 0
     - _RimLightThreshold: 0.05
     - _RimLightVisible: 1
-    - _RimLightWidth: 1
+    - _RimLightWidth: 0.75
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
@@ -654,6 +665,7 @@ Material:
     - _Set_SystemShadowsToBase: 0
     - _ShadeColor_Step: 0
     - _ShadowPatternSize: 0.3
+    - _ShadowRampOffset: 0.75
     - _Shininess: 0
     - _SizeFalloff: 0
     - _Smoothness: 0.5
@@ -750,6 +762,7 @@ Material:
     - _UseNormalMap: 0
     - _UseOutline: 1
     - _UseRampColor: 0
+    - _UseRampShadow: 1
     - _UseShadowThreshold: 0
     - _UseStartRailRimlight: 0
     - _UseToonRamp: 0
@@ -774,15 +787,15 @@ Material:
     - _roughness: 0.555
     - _simpleUI: 0
     - _subsurface: 0.5
-    - _test1: 0.525
-    - _test2: 0
+    - _test1: 0
+    - _test2: 0.775
     - _test3: 0
     - _utsTechnique: 0
     - _utsVersionX: 0
     - _utsVersionY: 9
     - _utsVersionZ: 5
     m_Colors:
-    - _1st_ShadeColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+    - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _AngelRingMaskColor: {r: 0, g: 1, b: 0, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}

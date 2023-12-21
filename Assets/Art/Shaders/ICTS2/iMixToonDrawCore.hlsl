@@ -2,6 +2,7 @@
 //imixgold@gmail.com
 //TODO : mix Start Rail render in FORWARD +
 
+//TODO:金属高光，眼睛，鼻子描边，移除嘴角描边，angle ring
 #include "iMixToonInput.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
 
@@ -30,35 +31,6 @@ struct VertexOutput
 {
 	float4 pos : SV_POSITION;
 	float2 uv0 : TEXCOORD0;
-	//v.2.0.4
-	#ifdef _IS_ANGELRING_OFF
-		float4 posWorld : TEXCOORD1;
-		float3 normalDir : TEXCOORD2;
-		float3 tangentDir : TEXCOORD3;
-		float3 bitangentDir : TEXCOORD4;
-		//v.2.0.7
-		float mirrorFlag : TEXCOORD5;
-
-		DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
-		#if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
-			half4 fogFactorAndVertexLight : TEXCOORD7; // x: fogFactor, yzw: vertex light
-		#else
-			half fogFactor : TEXCOORD7;
-		#endif
-
-		#ifndef _MAIN_LIGHT_SHADOWS
-			float4 positionCS : TEXCOORD8;
-			int mainLightID : TEXCOORD9;
-		#else
-			float4 shadowCoord : TEXCOORD8;
-			float4 positionCS : TEXCOORD9;
-			int mainLightID : TEXCOORD10;
-		#endif
-		UNITY_VERTEX_INPUT_INSTANCE_ID
-		UNITY_VERTEX_OUTPUT_STEREO
-
-		//
-	#elif _IS_ANGELRING_ON
 		float2 uv1 : TEXCOORD1;
 		float4 posWorld : TEXCOORD2;
 		float3 normalDir : TEXCOORD3;
@@ -83,10 +55,9 @@ struct VertexOutput
 		#endif
 		UNITY_VERTEX_INPUT_INSTANCE_ID
 		UNITY_VERTEX_OUTPUT_STEREO
-	#else
-		LIGHTING_COORDS(7, 8)
-		UNITY_FOG_COORDS(9)
-	#endif
+
+		// LIGHTING_COORDS(7, 8)
+		// UNITY_FOG_COORDS(9)
 	//
 
 };
@@ -163,7 +134,6 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 
 	float3 _NormalMap_var = UnpackNormalScale(SAMPLE_TEXTURE2D(_NormalMap, sampler_BaseMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
 	
-	
 
 	float3 normalLocal = _NormalMap_var.rgb;
 	float3 normalDirection = normalize(mul(normalLocal, tangentTransform)); // Perturbed normals
@@ -230,12 +200,16 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 
 	float4 _BaseMap_var = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, TRANSFORM_TEX(Set_UV0, _BaseMap));
 	
-	float4 areaMap = 0;
-	#if _AREA_HAIR
-		areaMap = SAMPLE_TEXTURE2D(_HairLightMap, sampler_HairLightMap, Set_UV0);
-	#elif _AREA_Body
-		areaMap = SAMPLE_TEXTURE2D(_BodyLightMap, sampler_BodyLightMap, Set_UV0);
-	#endif
+	float4 lightMap = 0;
+    #if _AREA_HAIR || _AREA_BODY
+    {
+        #if _AREA_HAIR
+            lightMap = SAMPLE_TEXTURE2D(_HairLightMap,sampler_HairLightMap,input.uv); 
+        #elif _AREA_BODY
+            lightMap = SAMPLE_TEXTURE2D(_BodyLightMap,sampler_BodyLightMap,input.uv);
+        #endif
+    }
+    #endif
 	
 	float4 faceMap = 0;
 	#if _AREA_FACE
@@ -261,17 +235,19 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 	#if defined(_MAIN_LIGHT_SHADOWS) || defined(_MAIN_LIGHT_SHADOWS_CASCADE) || defined(_MAIN_LIGHT_SHADOWS_SCREEN)
 		shadowAttenuation = mainLight.shadowAttenuation;
 	#endif
+    
+	float4 customNormalMap = SAMPLE_TEXTURE2D(_NormalMap,sampler_NormalMap,input.uv); 
 
 
 	//Begin
 
 	float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
-	//v.2.0.5
+	//
 	float3 defaultLightColor = saturate(max(half3(0.05, 0.05, 0.05) * _Unlit_Intensity, max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)), ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb) * _Unlit_Intensity));
 	float3 customLightDirection = normalize(mul(unity_ObjectToWorld, float4(((float3(1.0, 0.0, 0.0) * _Offset_X_Axis_BLD * 10) + (float3(0.0, 1.0, 0.0) * _Offset_Y_Axis_BLD * 10) + (float3(0.0, 0.0, -1.0) * lerp(-1.0, 1.0, _Inverse_Z_Axis_BLD))), 0)).xyz);
 	float3 lightDirection = normalize(lerp(defaultLightDirection, mainLight.direction.xyz, any(mainLight.direction.xyz)));
 	lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
-	//v.2.0.5:
+	//
 
 	half3 originalLightColor = mainLightColor.rgb;
 
@@ -302,15 +278,18 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 			shadowAttenuation = saturate(shadowAttenuation);
 		#endif
 
-		//v.2.0.6
+		//
 		//Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
 		float _SystemShadowsLevel_var = (shadowAttenuation * 0.5) + 0.5 + _Tweak_SystemShadowsLevel > 0.001 ? (shadowAttenuation * 0.5) + 0.5 + _Tweak_SystemShadowsLevel : 0.0001;
 
 		float _ShadingGradeMapLevel_var = _ShadingGradeMap_var.r < 0.95 ? _ShadingGradeMap_var.r + _Tweak_ShadingGradeMapLevel : 1;
 
-		float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var) * lerp(_HalfLambert_var, (_HalfLambert_var * saturate(_SystemShadowsLevel_var)), _Set_SystemShadowsToBase);
+		float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var) * lerp(_HalfLambert_var, (_HalfLambert_var * saturate(_SystemShadowsLevel_var)), _Set_SystemShadowsToBase); 
 
 		//float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var)*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(1.0+_Tweak_SystemShadowsLevel)), _Set_SystemShadowsToBase );
+		int rampRowIndex = 0;
+        int rampRowNum = 1;
+
 		#if _AREA_FACE //SDF Face Shadow
 			float3 headForward = normalize(_HeadForward);
 			float3 headRight = normalize(_HeadRight);
@@ -331,46 +310,9 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 			// return sdf;
 			// return step(faceMap.r,_test1);
 
-			// rampRowIndex = 0;
-			// rampRowNum = 8;
+			rampRowIndex = 0;
+			rampRowNum = 8;
 		#endif
-
-		// #if _AREA_HAIR || _AREA_UPPERBODY //Ramp Shadow(Body/Hair)
-		// 	{
-		// 		float NoL = dot(normalWS, lightDirectionWS);
-		// 		//mainLightShadow = step(0,NoL);
-		// 		float remappedNoL = NoL * 0.5 + 0.5;
-		// 		//mainLightShadow = step(1-lightMap.g, remappedNoL); //硬阴影
-		// 		mainLightShadow = smoothstep(1 - lightMap.g + _ShadowThresholdCenter - _ShadowThresholdSoftness, 1 - lightMap.g + _ShadowThresholdCenter + _ShadowThresholdSoftness, remappedNoL); //软阴影
-		// 		mainLightShadow *= lightMap.r;
-
-		// 		#if _AREA_HAIR
-		// 			rampRowIndex = 0;
-		// 			rampRowNum = 1;
-		// 		#elif _AREA_UPPERBODY || _AREA_LOWERBODY
-		// 			int rawIndex = (round((lightMap.a + 0.0425) / 0.0625) - 1) / 2;
-		// 			rampRowIndex = lerp(rawIndex, rawIndex + 4 < 8 ? rawIndex + 4 : rawIndex + 4 - 8, fmod(rawIndex, 2));
-		// 			rampRowNum = 8;
-		// 		#endif
-		// 	}
-		// #endif
-		// 	float rampUVx = mainLightShadow * (1 - _ShadowRampOffset) + _ShadowRampOffset;  // 变化集中在3/4处，挤压一下
-		// 	// float rampUVx = mainLightShadow;
-		// 	float rampUVy = (2 * rampRowIndex + 1) * (1.0 / (rampRowNum * 2));
-		// 	float2 rampUV = float2(rampUVx, rampUVy);
-		// 	float3 coolRamp = 1;
-		// 	float3 warmRamp = 1;
-		// 	#if _AREA_HAIR
-		// 		coolRamp = SAMPLE_TEXTURE2D(_HairCoolRamp, sampler_HairCoolRamp, rampUV).rgb;
-		// 		warmRamp = SAMPLE_TEXTURE2D(_HairWarmRamp, sampler_HairWarmRamp, rampUV).rgb;
-		// 	#elif _AREA_FACE || _AREA_UPPERBODY || _AREA_LOWERBODY
-		// 		coolRamp = SAMPLE_TEXTURE2D(_BodyCoolRamp, sampler_BodyCoolRamp, rampUV);
-		// 		warmRamp = SAMPLE_TEXTURE2D(_BodyWarmRamp, sampler_BodyWarmRamp, rampUV);
-		// 	#endif
-		// 	float isDay = lightDirectionWS.y * 0.5 + 0.5;
-		// 	float3 rampColor = lerp(coolRamp, warmRamp, isDay);
-		// 	mainLightColor *= baseColor;  //TODO : 减少平行光强度对基础色 色相的影响。(好像Saturate函数就是)
-		// 	mainLightColor *= rampColor;
 
 			//
 			float Set_FinalShadowMask = saturate((1.0 + ((Set_ShadingGrade - (_1st_ShadeColor_Step - _1st_ShadeColor_Feather)) * (0.0 - 1.0)) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step - _1st_ShadeColor_Feather)))); // Base and 1st Shade Mask
@@ -381,6 +323,45 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 			//Composition: 3 Basic Colors as Set_FinalBaseColor
 			float3 Set_FinalBaseColor = lerp(_BaseColor_var, lerp(_Is_LightColor_1st_Shade_var, lerp((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade), Set_ShadeShadowMask), Set_FinalShadowMask);
 
+			// Ramp start
+			#if _AREA_HAIR || _AREA_BODY //Ramp Shadow(Body/Hair)
+			{
+				// mainLightShadow = smoothstep(1 - lightMap.g + _ShadowThresholdCenter - _ShadowThresholdSoftness, 1 - lightMap.g + _ShadowThresholdCenter + _ShadowThresholdSoftness, remappedNoL); //软阴影
+				// mainLightShadow *= lightMap.r;
+				#if _AREA_HAIR
+					rampRowIndex = 0;
+					rampRowNum = 1;
+				#elif _AREA_BODY
+				    // rampRowIndex = 0;
+					// rampRowNum = 1;
+					int rawIndex = (round((lightMap.a + 0.0425) / 0.0625) - 1) / 2;
+					rampRowIndex = lerp(rawIndex, rawIndex + 4 < 8 ? rawIndex + 4 : rawIndex + 4 - 8, fmod(rawIndex, 2));
+					rampRowNum = 8;
+				#endif
+			}
+		    #endif
+			float rampUVx = Set_FinalShadowMask * (1 - _ShadowRampOffset) + _ShadowRampOffset;  // 变化集中在3/4处，挤压一下
+			float rampUVy = (2 * rampRowIndex + 1) * (1.0 / (rampRowNum * 2));
+			float2 rampUV = float2(rampUVx, rampUVy);
+			float3 coolRamp = 1;
+			float3 warmRamp = 1;
+			#if _AREA_HAIR
+				coolRamp = SAMPLE_TEXTURE2D(_HairCoolRamp, sampler_HairCoolRamp, rampUV).rgb;
+				warmRamp = SAMPLE_TEXTURE2D(_HairWarmRamp, sampler_HairWarmRamp, rampUV).rgb;
+			#elif _AREA_FACE || _AREA_BODY
+				coolRamp = SAMPLE_TEXTURE2D(_BodyCoolRamp, sampler_BodyCoolRamp, rampUV);
+				warmRamp = SAMPLE_TEXTURE2D(_BodyWarmRamp, sampler_BodyWarmRamp, rampUV);
+			#endif
+			float isDay = lightDirection.y * 0.5 + 0.5;
+			float3 rampColor = lerp(coolRamp, warmRamp, isDay);
+			Set_FinalBaseColor *= step(0.25,customNormalMap.b);
+			Set_FinalBaseColor = lerp(Set_FinalBaseColor, Set_FinalBaseColor * rampColor ,_UseRampShadow);
+			// #if _AREA_HAIR
+			// Set_FinalBaseColor += lightMap.b;
+			// #endif
+			// Ramp end
+			
+			
 			float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
 
 			float _Specular_var = 0.5 * dot(halfDirection, lerp(i.normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; // Specular
@@ -506,25 +487,17 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 			float _Tweak_MatcapMaskLevel_var_MultiplyMode = _Tweak_MatcapMaskLevel_var * lerp(1, (1 - (Set_FinalShadowMask) * (1 - _TweakMatCapOnShadow)), _Is_UseTweakMatCapOnShadow);
 			float3 matCapColorOnMultiplyMode = Set_HighColor * (1 - _Tweak_MatcapMaskLevel_var_MultiplyMode) + Set_HighColor * Set_MatCap * _Tweak_MatcapMaskLevel_var_MultiplyMode + lerp(float3(0, 0, 0), Set_RimLight, _RimLight);
 			float3 matCapColorFinal = lerp(matCapColorOnMultiplyMode, matCapColorOnAddMode, _Is_BlendAddToMatCap);
-			//v.2.0.4
-			#ifdef _IS_ANGELRING_OFF
-				float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before Emissive
-
-			#elif _IS_ANGELRING_ON
-				float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before AR
-				//v.2.0.7 AR Camera Rolling Stabilizer
-				float3 _AR_OffsetU_var = lerp(mul(UNITY_MATRIX_V, float4(i.normalDir, 0)).xyz, float3(0, 0, 1), _AR_OffsetU);
-				float2 AR_VN = _AR_OffsetU_var.xy * 0.5 + float2(0.5, 0.5);
-				float2 AR_VN_Rotate = RotateUV(AR_VN, - (_Camera_Dir * _Camera_Roll), float2(0.5, 0.5), 1.0);
-				float2 _AR_OffsetV_var = float2(AR_VN_Rotate.x, lerp(i.uv1.y, AR_VN_Rotate.y, _AR_OffsetV));
-				float4 _AngelRing_Sampler_var = tex2D(_AngelRing_Sampler, TRANSFORM_TEX(_AR_OffsetV_var, _AngelRing_Sampler));
-				float3 _Is_LightColor_AR_var = lerp((_AngelRing_Sampler_var.rgb * _AngelRing_Color.rgb), ((_AngelRing_Sampler_var.rgb * _AngelRing_Color.rgb) * Set_LightColor), _Is_LightColor_AR);
-				float3 Set_AngelRing = _Is_LightColor_AR_var;
-				float Set_ARtexAlpha = _AngelRing_Sampler_var.a;
-				float3 Set_AngelRingWithAlpha = (_Is_LightColor_AR_var * _AngelRing_Sampler_var.a);
-				//Composition: MatCap and AngelRing as finalColor
-				finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
-			#endif
+			
+			
+			// Angle Ring = AR
+			    float ndotH = max(0,dot(inputData.normalWS,normalize(viewDirection+normalize(lightDirection))));
+                float ndotV = max(0,dot(i.normalDir,viewDirection));
+			    float SpecularRange = step(1 - _HairSpecularRange, saturate(ndotH));
+                float ViewRange = step(1 - _HairSpecularViewRange, saturate(ndotV));
+				float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);
+				float _AngelRing_Sampler_var = lightMap.b * SpecularRange * ViewRange * _HairSpecularIntensity;
+				float3 _Is_LightColor_AR_var = lerp((_AngelRing_Sampler_var * _AngelRing_Color.rgb ), ((_AngelRing_Sampler_var * _AngelRing_Color.rgb) * Set_LightColor), _Is_LightColor_AR);
+				finalColor = lerp(finalColor, finalColor + _Is_LightColor_AR_var, _AngelRing);// Final Composition before Emissive
 
 			// PBR - SSS
 			float3 sss = SSS(lightDirection, viewDirection, i.normalDir, Set_BaseColor);
@@ -808,6 +781,9 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 
 			finalColor = SATURATE_IF_SDR(finalColor) + (envLightColor * envLightIntensity * _GI_Intensity * smoothstep(1, 0, envLightIntensity / 2)) + emissive + sss * _sssColor * _SSSWeightPBR ;
 
+			// finalColor = float3(lightMap.a,0,0);
+
+
 
 			finalColor += pointLightColor;
 			
@@ -832,6 +808,8 @@ float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
 		
 
 		return finalRGBA;
+		// return _AngelRing_Sampler_var;
+		// return step(_test1,customNormalMap.b);
 		// return float4( sss*_sssColor*_SSSWeightPBR,1);
 		// return float4(envColor,1);
 

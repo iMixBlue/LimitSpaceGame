@@ -12235,6 +12235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 7686578893162999166}
+  newController: {fileID: 9100000, guid: c9bc1f2ded1606d40bf52d5186013461, type: 2}
 --- !u!1 &2056125702
 GameObject:
   m_ObjectHideFlags: 0
@@ -12428,13 +12429,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138677391}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38044852, y: 0.69047886, z: -0.5960361, w: -0.15244342}
+  m_LocalRotation: {x: -0.6865483, y: -0.3657726, z: -0.16926771, w: -0.60515326}
   m_LocalPosition: {x: 2.07, y: 2.409, z: 1.959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 45, y: -470.1, z: 90}
+  m_LocalEulerAnglesHint: {x: 45, y: -252.7, z: 90}
 --- !u!114 &2138677394
 MonoBehaviour:
   m_ObjectHideFlags: 0

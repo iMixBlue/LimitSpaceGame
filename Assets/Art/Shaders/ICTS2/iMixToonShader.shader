@@ -25,6 +25,8 @@ Shader "iMixToonShader"
 
 		_Color ("Color", Color) = (1, 1, 1, 1)
 		_MainLightColorUsage ("Main light color usage (Default 1)", Range(0, 1)) = 1
+		_ShadowRampOffset ("Shadow ramp offset (Default 0.75)", Range(0, 1)) = 0.75
+		[Toggle(_)] _UseRampShadow ("On/Off Ramp Shadow Completely", Float) = 1
 		//
 		[Toggle(_)] _Is_LightColor_Base ("Is_LightColor_Base", Float) = 1
 		[NoScaleOffset]_1st_ShadeMap ("1st_ShadeMap", 2D) = "white" { }
@@ -137,12 +139,12 @@ Shader "iMixToonShader"
 		//// Angel Rings
 		[Header(Angeel Rings)]
 		[Toggle(_)] _AngelRing ("AngelRing", Float) = 0
-		_AngelRing_Sampler ("AngelRing_Sampler", 2D) = "black" { }
+		_HairSpecularRange("_HairSpecularRange",Range(0,1)) = 0
+		_HairSpecularViewRange("_HairSpecularViewRange",Range(0,1)) = 0
+		_HairSpecularIntensity("_HairSpecularIntensity",Range(0,50)) = 0
+		_AngelRing_Sampler ("AngelRing_Texture", 2D) = "black" { }
 		_AngelRing_Color ("AngelRing_Color", Color) = (1, 1, 1, 1)
 		[Toggle(_)] _Is_LightColor_AR ("Is_LightColor_AR", Float) = 1
-		_AR_OffsetU ("AR_OffsetU", Range(0, 0.5)) = 0
-		_AR_OffsetV ("AR_OffsetV", Range(0, 1)) = 0.3
-		[Toggle(_)] _ARSampler_AlphaOn ("ARSampler_AlphaOn", Float) = 0
 		//
 		//v.2.0.7 Emissive
 		[Header(Emissive)]
@@ -170,8 +172,8 @@ Shader "iMixToonShader"
 		_OutlineWidth ("Outline width (Default 1)", Range(0, 10)) = 1
 		_OutlineGamma ("Outline gamma (Default 16)", Range(1, 255)) = 16
 		_test1 ("test1", Range(0, 1)) = 0
-		_test2 ("test1", Range(0, 1)) = 0
-		_test3 ("test1", Range(0, 1)) = 0
+		_test2 ("test2", Range(0, 1)) = 0
+		_test3 ("test3", Range(0, 1)) = 0
 
 		
 		//GI Intensity
@@ -311,7 +313,7 @@ Shader "iMixToonShader"
 			#pragma shader_feature_local _ _SHADINGGRADEMAP
 
 			#pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
-			#pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
+			// #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
 
 			// used in Shadow calculation
 			#pragma shader_feature_local _ UTS_USE_RAYTRACING_SHADOW

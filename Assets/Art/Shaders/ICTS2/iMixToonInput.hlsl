@@ -30,6 +30,7 @@ float _MainLightColorUsage;
 fixed _Use_BaseAs1st;
 fixed _Use_1stAs2nd;
 fixed _Is_LightColor_Base;
+fixed _UseRampShadow;
 //
 float4 _1st_ShadeMap_ST;
 float4 _1st_ShadeColor;
@@ -164,10 +165,9 @@ fixed  _AngelRing;
 float4 _AngelRing_Sampler_ST;
 float4 _AngelRing_Color;
 fixed _Is_LightColor_AR;
-float _AR_OffsetU;
-float _AR_OffsetV;
-fixed _ARSampler_AlphaOn;
-
+half _HairSpecularRange;
+half _HairSpecularViewRange;
+half _HairSpecularIntensity;
 // OUTLINE 
 
 
@@ -187,6 +187,7 @@ float _FaceShadowTransitionSoftness;
 //
 float4 _BaseMap_ST;
 half4 _BaseColor;
+float _ShadowRampOffset;
 half4 _SpecColor;
 half4 _EmissionColor;
 
@@ -243,7 +244,7 @@ TEXTURE2D(_IBL_LUT); SAMPLER(sampler_IBL_LUT);
 
 TEXTURE2D(_1st_ShadeMap);
 TEXTURE2D(_2nd_ShadeMap);
-TEXTURE2D(_NormalMap);
+TEXTURE2D(_NormalMap); SAMPLER(sampler_NormalMap);
 
 sampler2D _ShadingGradeMap;
 sampler2D _HighColor_Tex;

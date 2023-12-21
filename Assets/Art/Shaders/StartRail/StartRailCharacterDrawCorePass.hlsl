@@ -328,6 +328,7 @@ float4 frag(Varyings input, bool isFrontFace : SV_IsFrontFace) : SV_TARGET
     clip(color.a - _AlphaClip);
     color.rgb = MixFog(color.rgb, input.positionWSAndFogFactor.w);
     return color;
+    // return lightMap.g;
     // return mainLightShadow > _test1 && mainLightShadow < _test2;
     // return mainLightShadow;
     // return step(_test1,mainLightShadow);
