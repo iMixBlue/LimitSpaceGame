@@ -1,15 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Smoke : MonoBehaviour
+public class Smoke : Bounce
 {
     [SerializeField] ParticleSystem smoke;
-    float pushForce = 10f;
+    protected override float _pushForce => 10f;
+
+    private void Update()
+    {
+        PlaySmokeEffect();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        base.OnTriggerEnter(other);
+        /*if (other.CompareTag("Player"))
         {
             Debug.Log("Player enter!");
 
@@ -22,6 +29,18 @@ public class Smoke : MonoBehaviour
 
                 playerRigidbody.AddForce(pushDirection * pushForce, ForceMode.Impulse);
             }
-        }
+        }*/
     }
+
+    private void PlaySmokeEffect()
+    {
+        throw new NotImplementedException();
+    }
+
+    // Stop smoke effect
+    public void StopEject()
+    {
+
+    }
+
 }
