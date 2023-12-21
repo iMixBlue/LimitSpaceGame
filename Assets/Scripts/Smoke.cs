@@ -34,7 +34,7 @@ public class Smoke : Bounce
 
     private void PlaySmokeEffect()
     {
-        throw new NotImplementedException();
+        // Play smoke effect
     }
 
     // Stop smoke effect
