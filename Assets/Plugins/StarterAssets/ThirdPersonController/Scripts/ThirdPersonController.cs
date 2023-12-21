@@ -101,7 +101,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
-        private Animator _animator;
+        public Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
@@ -109,7 +109,6 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-
         private bool IsCurrentDeviceMouse
         {
             get
@@ -121,6 +120,7 @@ namespace StarterAssets
 #endif
             }
         }
+        
 
 
         private void Awake()

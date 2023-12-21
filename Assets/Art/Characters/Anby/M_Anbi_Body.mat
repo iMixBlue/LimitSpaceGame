@@ -110,6 +110,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Cubemap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -167,6 +171,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HighColor_Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IBL_LUT:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -352,6 +360,7 @@ Material:
     - _CoatMask: 0
     - _ColorShift_Speed: 0
     - _ComposerMaskMode: 0
+    - _CubemapMip: 0
     - _Cull: 2
     - _CullMode: 2
     - _CullModeForward: 2
@@ -402,6 +411,7 @@ Material:
     - _Farthest_Distance: 100
     - _FirstShadeOverridden: 0
     - _FirstShadeVisible: 1
+    - _FresnelPow: 1
     - _GI_Intensity: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -457,6 +467,7 @@ Material:
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
     - _LinkDetailsWithBase: 1
+    - _MainLightColorUsage: 1
     - _MatCap: 0
     - _MaterialID: 1
     - _Metallic: 0
@@ -488,11 +499,11 @@ Material:
     - _RimLight: 1
     - _RimLightBrightness: 1
     - _RimLightFadeout: 0.918
-    - _RimLightMixAlbedo: 0
+    - _RimLightMixAlbedo: 1
     - _RimLightOverridden: 0
     - _RimLightThreshold: 0.05
     - _RimLightVisible: 1
-    - _RimLightWidth: 0.3
+    - _RimLightWidth: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
@@ -502,6 +513,7 @@ Material:
     - _SPRDefaultUnlitColorMask: 15
     - _SRPDefaultUnlitColMode: 1
     - _SSRefractionProjectionModel: 0
+    - _SSSWeightPBR: 0
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _SecondShadeOverridden: 0
@@ -588,8 +600,13 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - _ZWriteMode: 1
+    - _anisotropic: 0
+    - _ior: 10
     - _isUnityToonshader: 1
+    - _metallic: 0.495
+    - _roughness: 0.555
     - _simpleUI: 0
+    - _subsurface: 0.467
     - _test1: 0
     - _test2: 0
     - _test3: 0
@@ -610,11 +627,13 @@ Material:
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _FirstShadeMaskColor: {r: 0, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightMaskColor: {r: 1, g: 1, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
@@ -634,5 +653,6 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
+    - _sssColor: {r: 1, g: 1, b: 1, a: 1}
     - emissive: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

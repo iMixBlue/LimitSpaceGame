@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
+using StarterAssets;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     Inventory _inventory;
     RespawnManager _respawnManager;
+    public CinemachineVirtualCamera virtualCamera;
+    public RuntimeAnimatorController newController; 
 
     private void Start()
     {
+
         _inventory = new Inventory();
         _respawnManager = new RespawnManager(this.gameObject);
     }
