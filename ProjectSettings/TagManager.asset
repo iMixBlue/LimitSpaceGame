@@ -3,26 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - CinemachineTarget
-  - Tiny1Wall
-  - Tiny1End
-<<<<<<< Updated upstream
-  - SmallPlayer
-=======
-  - Coin
-  - Diminution
->>>>>>> Stashed changes
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Ground
-  - Portal
-  - Floor
   - 
   - 
   - 
@@ -30,8 +18,11 @@ TagManager:
   - 
   - 
   - 
-  - Face
-  - Hair
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

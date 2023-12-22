@@ -34,17 +34,8 @@ public class DiminutionExecuter : Usable
         {
             Debug.Log("Diminuting!");
             _player.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-<<<<<<< Updated upstream
             _player.tag = "SmallPlayer";
-            thirdPersonController.JumpHeight = 0.4f;
-            thirdPersonController.MoveSpeed = 1.2f;
-            thirdPersonController.SprintSpeed = 0.4f;
-            thirdPersonController._animator.runtimeAnimatorController = character.newController;
-            character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset.y = -0.35f;
-            character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = 0.5f;
-=======
             SetMiniDetail();
->>>>>>> Stashed changes
         }
         else
         {
@@ -59,7 +50,7 @@ public class DiminutionExecuter : Usable
         thirdPersonController.MoveSpeed = 0.2f;
         thirdPersonController.SprintSpeed = 0.5335f;
         thirdPersonController.JumpHeight = 0.12f;
-        thirdPersonController.Gravity = -1.5f;
+        thirdPersonController.Gravity = -2.5f;
 
         thirdPersonController._animator.runtimeAnimatorController = character.miniController;
     }
