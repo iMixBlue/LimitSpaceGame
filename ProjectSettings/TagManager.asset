@@ -7,7 +7,12 @@ TagManager:
   - CinemachineTarget
   - Tiny1Wall
   - Tiny1End
+<<<<<<< Updated upstream
   - SmallPlayer
+=======
+  - Coin
+  - Diminution
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
