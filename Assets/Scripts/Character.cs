@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     Inventory _inventory;
     RespawnManager _respawnManager;
     public CinemachineVirtualCamera virtualCamera;
-    public RuntimeAnimatorController newController; 
+    public RuntimeAnimatorController miniController; 
 
     private void Start()
     {
@@ -20,10 +20,10 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
             UseItem(Inventory.item.Diminution);
-        }
+        }*/
     }
 
     public void AddItem(Inventory.item theItem, Usable item)
@@ -31,6 +31,8 @@ public class Character : MonoBehaviour
         _inventory.AddItem(theItem, item);
     }
     public void UseItem(Inventory.item theItem) { _inventory.GetItem(theItem).Use(); }
+
+    //public Usable GetItem(Inventory.item theItem) { return _inventory.GetItem(theItem); }
     public void ReceiveCoin() { _inventory.ReceiveCoin(); }
 
     public int CurrentCoin() { return _inventory.CurrentCoin(); }
