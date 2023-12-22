@@ -25,9 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _EMISSION
   - _HALFTONESHAPE_DOT
-  - _TOON_SHADING_ON
   m_InvalidKeywords:
   - _EMISSIVE_SIMPLE
   - _HAFTONESHAPES_DOT
@@ -35,7 +33,7 @@ Material:
   - _IS_CLIPPING_OFF
   - _IS_OUTLINE_CLIPPING_NO
   - _OUTLINE_NML
-  m_LightmapFlags: 2
+  m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2050
@@ -592,7 +590,7 @@ Material:
     - _ShadeColor_Step: 0
     - _ShadowPatternSize: 0.3
     - _SizeFalloff: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.75
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 0
@@ -609,7 +607,7 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularMode: 0
     - _SpecularOcclusionMode: 1
-    - _SpecularSize: 1
+    - _SpecularSize: 0
     - _SpecularSmoothstep: 1
     - _SpecularWeightPBR: 1
     - _SpherizeNormalEnabled: 0
@@ -650,8 +648,8 @@ Material:
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
     - _ThicknessMultiplier: 1
-    - _ToonBlending: 1
-    - _ToonEnabled: 1
+    - _ToonBlending: 0
+    - _ToonEnabled: 0
     - _ToonRampMapFac: 1
     - _TransmissionEnable: 1
     - _TransmissionMask: 1
@@ -720,7 +718,7 @@ Material:
     - _AngelRingMaskColor: {r: 0, g: 1, b: 0, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+    - _BaseColor: {r: 0.18820454, g: 0.37748432, b: 0.5754717, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColorMaskColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -729,7 +727,7 @@ Material:
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0.014140934, b: 0.084905684, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionMapChannelMask: {r: 1, g: 1, b: 1, a: 0}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
