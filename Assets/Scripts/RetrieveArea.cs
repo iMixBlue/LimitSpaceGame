@@ -16,6 +16,7 @@ public class RetrieveArea : MonoBehaviour
             Debug.Log("Retieved!");
             switch (_item.tag){
                 case "Diminution":
+                    other.gameObject.tag = "SmallPlayer";
                     DiminutionExecuter potion = new DiminutionExecuter(other.gameObject);
                     other.GetComponent<Character>().AddItem(Inventory.item.Diminution, potion);
                     Debug.Log("Diminution Retrieved!");
