@@ -236,7 +236,7 @@ namespace StarterAssets
                 // note T in Lerp is clamped, so we don't need to clamp our speed
                 _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
                     Time.deltaTime * SpeedChangeRate);
-                Debug.Log(currentHorizontalSpeed);
+                //Debug.Log(currentHorizontalSpeed);
                 // round speed to 3 decimal places
                 _speed = Mathf.Round(_speed * 1000f) / 1000f;
                 //Debug.Log(_speed);
