@@ -15,16 +15,27 @@ MonoBehaviour:
   version: 0
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ice_Cave_Generic_Snow
   m_Shader: {fileID: 4800000, guid: 13dbaaa838e018742b1d2db35c905415, type: 3}
-  m_ShaderKeywords: _DETAIL_MAP _EMISSION _EMISSIVE_COLOR_MAP _EMISSIVE_MAPPING_TRIPLANAR
-    _HEIGHTMAP _MASKMAP _MATERIAL_FEATURE_TRANSMISSION _NORMALMAP _NORMALMAP_TANGENT_SPACE
-    _THICKNESSMAP
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _DETAIL_MAP
+  - _EMISSION
+  - _EMISSIVE_COLOR_MAP
+  - _EMISSIVE_MAPPING_TRIPLANAR
+  - _HEIGHTMAP
+  - _MASKMAP
+  - _MATERIAL_FEATURE_TRANSMISSION
+  - _NORMALMAP
+  - _NORMALMAP_TANGENT_SPACE
+  - _THICKNESSMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -36,6 +47,7 @@ Material:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
   - TransparentBackface
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -163,6 +175,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AORemapMax: 0.9999997
     - _AORemapMin: 0
@@ -310,8 +323,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DiffusionProfileAsset: {r: -0.00004287191, g: -0.00000015103808, b: -186.11024,
-        a: 4.4904783e-32}
+    - _DiffusionProfileAsset: {r: -0.00004287191, g: -0.00000015103808, b: -186.11024, a: 4.4904783e-32}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 2.4474998, g: 2.4950523, b: 2.5, a: 2.5}
@@ -324,3 +336,4 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db9e4e2e16ff6d4684a942e53a5d4a5, type: 3}
   m_Name: CelHairShadowStencil
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     hairShadowColor: {r: 0.6132076, g: 0.60163397, b: 0.5698202, a: 0}
     offset: 0.004
