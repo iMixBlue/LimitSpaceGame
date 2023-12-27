@@ -19267,11 +19267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046513122695109517, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.24664886
+      value: 0.24664888
       objectReference: {fileID: 0}
     - target: {fileID: 1046513122695109517, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.013430691
+      value: 0.013430692
       objectReference: {fileID: 0}
     - target: {fileID: 2008254535021076290, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32890,6 +32890,7 @@ GameObject:
   - component: {fileID: 1369864613}
   - component: {fileID: 1369864615}
   - component: {fileID: 1369864614}
+  - component: {fileID: 1369864616}
   m_Layer: 3
   m_Name: Car
   m_TagString: Untagged
@@ -32935,9 +32936,25 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3, z: 3}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1369864615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369864612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8bfd0d6733a5ce498ea07bc5a4a8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clockwork: {fileID: 560699911}
+  _UnwoundTransform: {fileID: 387580615}
+  _fullWoundTransform: {fileID: 255180825}
+  windTimes: 20
+--- !u!114 &1369864616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

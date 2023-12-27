@@ -5,8 +5,8 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     float _power = 0;
-    float _powerThreshold = 0.6f;
-    float _powerAddSpeed = 20;
+    float _powerThreshold = 0.2f;
+    float _powerAddSpeed = 10;
     float _powerLoseSpeed = 1;
     float _maxPower = 20;
     [SerializeField] Transform _clockwork;
@@ -38,9 +38,9 @@ public class Car : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("SmallPlayer"))
         {
-            //Debug.Log("Player entered£¡");
+            Debug.Log("Player entered£¡");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 _power += _powerAddSpeed * Time.deltaTime;
