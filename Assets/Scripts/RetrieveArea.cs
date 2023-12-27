@@ -20,7 +20,7 @@ public class RetrieveArea : MonoBehaviour
                     DiminutionExecuter potion = new DiminutionExecuter(other.gameObject);
                     other.GetComponent<Character>().AddItem(Inventory.item.Diminution, potion);
                     Debug.Log("Diminution Retrieved!");
-                    OnItemGetAction?.Invoke();
+                    OnItemGetAction?.Invoke();      // Play cutscene
                     OnItemGetAction = null;
                     potion.SetMiniDetail();
                     break;
