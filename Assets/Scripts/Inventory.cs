@@ -22,4 +22,6 @@ public class Inventory
     public void ReceiveCoin() { _coin++; }
 
     public int CurrentCoin() { return _coin; }
+
+    public int GetInventoryCount() { return _inventory.Count; }
 }

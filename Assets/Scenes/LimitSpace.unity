@@ -3174,7 +3174,7 @@ Transform:
   m_GameObject: {fileID: 147468569}
   serializedVersion: 2
   m_LocalRotation: {x: 0.34042525, y: 2.2924427e-22, z: -7.853959e-23, w: 0.9402716}
-  m_LocalPosition: {x: -2.5007248, y: 2.1999998, z: 4.857217}
+  m_LocalPosition: {x: -2.6810281, y: 2.1999998, z: 4.5461354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19267,11 +19267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046513122695109517, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.24664888
+      value: 0.24664886
       objectReference: {fileID: 0}
     - target: {fileID: 1046513122695109517, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.013430692
+      value: 0.013430691
       objectReference: {fileID: 0}
     - target: {fileID: 2008254535021076290, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21035,7 +21035,7 @@ Transform:
   m_GameObject: {fileID: 885255844}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32326585, y: 0.000000016281332, z: -0.000000005561823, w: 0.9463082}
-  m_LocalPosition: {x: -2.4271493, y: 2.1999998, z: 4.963219}
+  m_LocalPosition: {x: -2.6786246, y: 2.1999998, z: 4.550913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22977,7 +22977,7 @@ Transform:
   m_GameObject: {fileID: 972653837}
   serializedVersion: 2
   m_LocalRotation: {x: 0.30604523, y: -0.000000016381373, z: 0.0000000052661253, w: 0.952017}
-  m_LocalPosition: {x: -2.2838113, y: 2.1999998, z: 5.145302}
+  m_LocalPosition: {x: -2.674537, y: 2.1999998, z: 4.558987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32891,6 +32891,7 @@ GameObject:
   - component: {fileID: 1369864615}
   - component: {fileID: 1369864614}
   - component: {fileID: 1369864616}
+  - component: {fileID: 1369864617}
   m_Layer: 3
   m_Name: Car
   m_TagString: Untagged
@@ -32906,17 +32907,18 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369864612}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.13, y: 1.2, z: 1.99}
+  m_LocalRotation: {x: -0, y: 0.35487902, z: -0, w: 0.93491226}
+  m_LocalPosition: {x: 12.129997, y: 1.1999997, z: 1.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2042488564}
   - {fileID: 1780306031}
   - {fileID: 560699911}
   - {fileID: 387580615}
   - {fileID: 255180825}
   m_Father: {fileID: 843415172}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 41.572, z: 0}
 --- !u!65 &1369864614
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32953,7 +32955,8 @@ MonoBehaviour:
   _clockwork: {fileID: 560699911}
   _UnwoundTransform: {fileID: 387580615}
   _fullWoundTransform: {fileID: 255180825}
-  windTimes: 20
+  _firePoint: {fileID: 2042488564}
+  forceMagnitude: 10
 --- !u!114 &1369864616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32969,7 +32972,35 @@ MonoBehaviour:
   _clockwork: {fileID: 560699911}
   _UnwoundTransform: {fileID: 387580615}
   _fullWoundTransform: {fileID: 255180825}
-  windTimes: 20
+  _firePoint: {fileID: 0}
+  forceMagnitude: 10
+--- !u!54 &1369864617
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369864612}
+  serializedVersion: 4
+  m_Mass: 2
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1372003913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51426,6 +51457,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030974016, guid: abc00000000007634532468914528343, type: 3}
   m_PrefabInstance: {fileID: 2039030765}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2042488563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2042488564}
+  m_Layer: 3
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2042488564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042488563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.056, z: -0.587}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1369864613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2045091685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54487,6 +54549,16 @@ PrefabInstance:
     - target: {fileID: 3325725290913431246, guid: faef0b7d4eb91584496f9b4f09e88f11, type: 3}
       propertyPath: m_UpdateMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325725290913431246, guid: faef0b7d4eb91584496f9b4f09e88f11, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Bip001 L Finger01'\n\tTransform 'Bip001
+        Spine2'\n\tTransform 'Bip001 R Finger01'\n\tTransform 'Bip001 L Toe0'\n\tTransform
+        'Bip001 R Finger3'\n\tTransform 'Bip001 L Clavicle'\n\tTransform 'Bip001
+        R Clavicle'\n\tTransform 'Bip001 L Finger1'\n\tTransform 'Bip001 L Finger21'\n\tTransform
+        'Bip001 L Finger32'\n\tand more ..."
       objectReference: {fileID: 0}
     - target: {fileID: 3325725290913431246, guid: faef0b7d4eb91584496f9b4f09e88f11, type: 3}
       propertyPath: m_ApplyRootMotion

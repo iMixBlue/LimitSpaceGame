@@ -19,14 +19,14 @@ public class DiminutionExecuter : Usable
         Debug.Log("Using diminution potion!");
         
         // Change to cutscene animation
-        if (_player.transform.localScale == Vector3.one)
+        if (_player.transform.localScale == Vector3.one || _player.transform.localScale == Vector3.zero)
         {
             Debug.Log("Diminuting!");
             _player.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             _player.tag = "SmallPlayer";
             SetMiniDetail();
         }
-        else
+        else if(_player.transform.localScale == new Vector3(0.1f, 0.1f, 0.1f))
         {
             Debug.Log("Revovering!");
             _player.transform.localScale = Vector3.one;

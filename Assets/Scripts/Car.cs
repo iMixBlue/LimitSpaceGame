@@ -6,18 +6,22 @@ public class Car : MonoBehaviour
 {
     float _power = 0;
     float _powerThreshold = 0.2f;
-    float _powerAddSpeed = 10;
+    float _powerAddSpeed = 10   ;
     float _powerLoseSpeed = 1;
-    float _maxPower = 20;
     [SerializeField] Transform _clockwork;
     [SerializeField] Transform _UnwoundTransform;
     [SerializeField] Transform _fullWoundTransform;
     Lerper _clockworkLerper;
-    [SerializeField] float windTimes = 20f;
+    [SerializeField] Transform _firePoint;
+    public float forceMagnitude = 8f;
+    bool _isPlayerInCar = false;
+    bool _ejected = false;
+    Transform _player;
 
     private void Start()
     {
         _clockworkLerper = new Lerper(_clockwork, _UnwoundTransform, _fullWoundTransform, AnimationCurve.Linear(0f, 0f, 1f, 1f));
+        _firePoint = transform.GetChild(0);
     }
     private void Update()
     {
@@ -35,12 +39,33 @@ public class Car : MonoBehaviour
         {
             UnwindClockwork();
         }
+        if (_isPlayerInCar && _player != null)
+        {
+            _player.transform.position = _firePoint.transform.position;
+        }
+        if (GetComponent<Rigidbody>().velocity.magnitude < 0.1f)
+        {
+
+        }
     }
     private void OnTriggerStay(Collider other)
     {
+        // Player enter the car
         if (other.CompareTag("SmallPlayer"))
         {
             Debug.Log("Player entered£¡");
+            _player = other.transform;
+            if (Input.GetKeyDown(KeyCode.F)){
+                other.GetComponent<Character>().SetInCarState();
+                //other.transform.position = _firePoint.transform.position;
+                _isPlayerInCar = true;
+            }
+            //Debug.Log("Add speed: " + _powerLoseSpeed * Time.deltaTime + "Add speed: " + _powerAddSpeed * Time.deltaTime);
+        }
+
+        // Player wind the clockwork
+        if (_isPlayerInCar)
+        {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 _power += _powerAddSpeed * Time.deltaTime;
@@ -51,7 +76,12 @@ public class Car : MonoBehaviour
                     Eject();
                 }
             }
-            //Debug.Log("Add speed: " + _powerLoseSpeed * Time.deltaTime + "Add speed: " + _powerAddSpeed * Time.deltaTime);
+            _player.transform.position = _firePoint.transform.position;
+            if (GetComponent<Rigidbody>().velocity.magnitude < 0.1f && _ejected)
+            {
+                _player.GetComponent<Character>().SetMinitate();
+                //Destroy(GetComponent<Rigidbody>());
+            }
         }
     }
 
@@ -67,6 +97,10 @@ public class Car : MonoBehaviour
     void Eject()
     {
         Debug.Log("Eject!");
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        Vector3 forceDirection = gameObject.transform.forward * forceMagnitude;
+        rb.AddForce(forceDirection, ForceMode.Impulse);
+        _ejected = true;
     }
 
     void WindClockwork()
