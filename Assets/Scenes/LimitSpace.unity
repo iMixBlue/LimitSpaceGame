@@ -7578,7 +7578,7 @@ Transform:
   m_GameObject: {fileID: 330430805}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.88, y: 2.37, z: -0.74}
+  m_LocalPosition: {x: 13.508, y: 4.72, z: 4.284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20948,7 +20948,7 @@ Transform:
   m_GameObject: {fileID: 885255844}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32326585, y: 0.000000016281332, z: -0.000000005561823, w: 0.9463082}
-  m_LocalPosition: {x: 2.6185477, y: 2.2, z: 4.6639705}
+  m_LocalPosition: {x: 2.6185474, y: 2.2, z: 4.663971}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43211,9 +43211,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585735153}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.641, y: 1.298, z: 5.033}
-  m_LocalScale: {x: 1.4508, y: 0.05442373, z: 1.4508}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.012994766, y: -1.0520012, z: 0.008999348}
+  m_LocalScale: {x: 1.4507998, y: 0.05442371, z: 1.4507998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 71697123}
@@ -43313,6 +43313,9 @@ MonoBehaviour:
   climbPosition2: {fileID: 307491821}
   climbPosition3: {fileID: 1992663791}
   climbPosition4: {fileID: 1771687952}
+  parent: {fileID: 330430805}
+  swingSpeed: 60
+  swingAngle: 45
 --- !u!1 &1587893370
 GameObject:
   m_ObjectHideFlags: 0
@@ -47116,9 +47119,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845091854}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.641, y: 3.57, z: 5.033}
-  m_LocalScale: {x: 0.10602314, y: 4.464073, z: 0.1591545}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.012994766, y: -0.51100016, z: 0.008999348}
+  m_LocalScale: {x: 0.10602311, y: 1.0534235, z: 0.15915449}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330430806}

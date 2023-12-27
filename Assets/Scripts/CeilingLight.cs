@@ -15,10 +15,17 @@ public class CeilingLight : MonoBehaviour
     public Transform climbPosition2;
     public Transform climbPosition3;
     public Transform climbPosition4;
+    public GameObject parent;
+    public float swingSpeed = 30f;  // 摇晃的速度
+    public float swingAngle = 30f;  // 摇晃的角度
+
+    private bool isSwingingRight = true;
+    private float currentRotationZ;
+    private float targetRotationZ;
     // Start is called before the first frame update
     void Start()
     {
-        
+         targetRotationZ = swingAngle;
     }
 
     // Update is called once per frame
@@ -29,6 +36,29 @@ public class CeilingLight : MonoBehaviour
             player.GetComponent<ThirdPersonController>().enabled = true;
             player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
         }
+         float rotationAmount = swingSpeed * Time.deltaTime;
+
+        // 在正方向和反方向之间切换
+        if (isSwingingRight)
+        {
+            currentRotationZ += rotationAmount;
+        }
+        else
+        {
+            currentRotationZ -= rotationAmount;
+        }
+
+        // 更新物体的旋转
+        parent.transform.rotation = Quaternion.Euler(parent.transform.rotation.eulerAngles.x, parent.transform.rotation.eulerAngles.y, currentRotationZ);
+
+        // 如果摇摆角度超过目标旋转，切换方向
+        if (Mathf.Abs(currentRotationZ) >= Mathf.Abs(targetRotationZ))
+        {
+            isSwingingRight = !isSwingingRight;
+            // 设置新的目标旋转
+            targetRotationZ = -targetRotationZ;
+        }
+        
     }
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "SmallPlayer"){
