@@ -40,8 +40,8 @@ public class DiminutionExecuter : Usable
 
         thirdPersonController.MoveSpeed = 0.2f;
         thirdPersonController.SprintSpeed = 0.5335f;
-        thirdPersonController.JumpHeight = 0.12f;
-        thirdPersonController.Gravity = -2.5f;
+        thirdPersonController.JumpHeight = 0.08f;
+        thirdPersonController.Gravity = -4f;
 
         Character character = _player.GetComponent<Character>();
 

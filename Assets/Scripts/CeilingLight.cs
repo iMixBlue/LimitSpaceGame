@@ -31,8 +31,9 @@ public class CeilingLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if(inCeiling && Input.GetKeyDown(KeyCode.Space)){
-            // Debug.Log(1);
+         if(inCeiling && Input.GetKeyDown(KeyCode.F)){
+            Debug.Log(1);
+            this.gameObject.transform.DetachChildren();
             player.GetComponent<ThirdPersonController>().enabled = true;
             player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
         }
@@ -62,6 +63,7 @@ public class CeilingLight : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "SmallPlayer"){
+            Debug.Log(1);
             inCeiling= true;
             float distance1 = Mathf.Abs(Vector3.Distance(cameraBasePoint.position,climbPosition1.position));
             float distance2 = Mathf.Abs(Vector3.Distance(cameraBasePoint.position,climbPosition2.position));
@@ -70,41 +72,52 @@ public class CeilingLight : MonoBehaviour
             float minDistance = Mathf.Min(distance1,Mathf.Min(distance2,Mathf.Min(distance3,distance4)));
             if(minDistance == distance1){
                 Debug.Log(1);
+                player.transform.parent = this.gameObject.transform;
+                player.GetComponent<ThirdPersonController>().enabled = false;
+                player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorController;
                 Vector3 position = climbPosition1.position - cameraBasePoint.position;
-                Debug.Log(position);
+                // Debug.Log(position);
                 player.transform.position += position;
             }
             if(minDistance == distance2){
                 Debug.Log(2);
+                player.transform.parent = this.gameObject.transform;
+                player.GetComponent<ThirdPersonController>().enabled = false;
+                player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorController;
                 Vector3 position = climbPosition2.position - cameraBasePoint.position;
-                Debug.Log(position);
+                // Debug.Log(position);
                 player.transform.position += position;
             }
             if(minDistance == distance3){
                 Debug.Log(3);
+                player.transform.parent = this.gameObject.transform;
+                player.GetComponent<ThirdPersonController>().enabled = false;
+                player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorController;
                 Vector3 position = climbPosition3.position - cameraBasePoint.position;
-                Debug.Log(position);
+                // Debug.Log(position);
 
                 player.transform.position += position;
             }
             if(minDistance == distance4){
                 Debug.Log(4);
+                player.transform.parent = this.gameObject.transform;
+                player.GetComponent<ThirdPersonController>().enabled = false;
+                player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorController;
                 Vector3 position = climbPosition4.position - cameraBasePoint.position;
-                Debug.Log(position);
+                // Debug.Log(position);
 
                 player.transform.position += position;
             }
-            player.GetComponent<ThirdPersonController>().enabled = false;
-            player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorController;
+            
         }
     }
-    private void OnTriggerExit(Collider other) {
-        if(other.tag == "SmallPlayer"){
-            inCeiling= false;
-            player.GetComponent<ThirdPersonController>().enabled = true;
-            player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
-        }
-    }
+    // private void OnTriggerExit(Collider other) {
+    //     if(other.tag == "SmallPlayer"){
+    //         inCeiling= false;
+    //         player.GetComponent<ThirdPersonController>().enabled = true;
+    //         player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
+    //     }
+    // }
     private void OnTriggerStay(Collider other) {
        
     }
