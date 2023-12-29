@@ -26,7 +26,7 @@ public class DiminutionExecuter : Usable
             _player.tag = "SmallPlayer";
             SetMiniDetail();
         }
-        else if(_player.transform.localScale == new Vector3(0.1f, 0.1f, 0.1f))
+        else if (_player.transform.localScale == new Vector3(0.1f, 0.1f, 0.1f))
         {
             Debug.Log("Revovering!");
             _player.transform.localScale = Vector3.one;
@@ -40,9 +40,10 @@ public class DiminutionExecuter : Usable
 
         thirdPersonController.MoveSpeed = 0.2f;
         thirdPersonController.SprintSpeed = 0.5335f;
-        thirdPersonController.JumpHeight = 0.08f;
-        thirdPersonController.Gravity = -4f;
-
+        thirdPersonController.JumpHeight = 0.25f;
+        thirdPersonController.Gravity = -2.5f;
+        thirdPersonController.GroundedOffset = -0.014f;
+        thirdPersonController.GroundedRadius = 0.028f;
         Character character = _player.GetComponent<Character>();
 
         thirdPersonController._animator.runtimeAnimatorController = character.miniController;

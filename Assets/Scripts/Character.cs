@@ -57,9 +57,10 @@ public class Character : MonoBehaviour
 
     public void SetMinitate()
     {
+        Debug.Log("Mini state set!");
         GetComponent<ThirdPersonController>().MoveSpeed = 0.2f;
         GetComponent<ThirdPersonController>().SprintSpeed = 0.5335f;
-        GetComponent<ThirdPersonController>().JumpHeight = 0.12f;
+        GetComponent<ThirdPersonController>().JumpHeight = 0.25f;
         transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         GetComponent<CharacterController>().enabled = true;
     }

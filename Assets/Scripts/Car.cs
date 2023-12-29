@@ -39,7 +39,7 @@ public class Car : MonoBehaviour
         {
             UnwindClockwork();
         }
-        if (_isPlayerInCar && _player != null)
+        if (_isPlayerInCar && _player != null && !_ejected)
         {
             _player.transform.position = _firePoint.transform.position;
         }
@@ -79,7 +79,7 @@ public class Car : MonoBehaviour
             _player.transform.position = _firePoint.transform.position;
             if (GetComponent<Rigidbody>().velocity.magnitude < 0.1f && _ejected)
             {
-                _player.GetComponent<Character>().SetMinitate();
+                //_player.GetComponent<Character>().SetMinitate();
                 //Destroy(GetComponent<Rigidbody>());
             }
         }
@@ -100,7 +100,7 @@ public class Car : MonoBehaviour
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         Vector3 forceDirection = gameObject.transform.forward * forceMagnitude;
         rb.AddForce(forceDirection, ForceMode.Impulse);
-        _ejected = true;
+        StartCoroutine(SetGetOffCar(1));
     }
 
     void WindClockwork()
@@ -111,5 +111,13 @@ public class Car : MonoBehaviour
     void UnwindClockwork()
     {
         _clockworkLerper.ToT0();
+    }
+
+    IEnumerator SetGetOffCar(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _ejected = true;
+        _isPlayerInCar = false;
+        _player.GetComponent<Character>().SetMinitate();
     }
 }
