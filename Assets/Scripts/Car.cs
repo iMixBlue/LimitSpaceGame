@@ -77,11 +77,6 @@ public class Car : MonoBehaviour
                 }
             }
             _player.transform.position = _firePoint.transform.position;
-            if (GetComponent<Rigidbody>().velocity.magnitude < 0.1f && _ejected)
-            {
-                //_player.GetComponent<Character>().SetMinitate();
-                //Destroy(GetComponent<Rigidbody>());
-            }
         }
     }
 
