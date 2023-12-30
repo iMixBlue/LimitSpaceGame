@@ -5,42 +5,31 @@ using UnityEngine;
 
 public class Smoke : Bounce
 {
-    [SerializeField] ParticleSystem smoke;
-    protected override float _pushForce => 10f;
+    [SerializeField] ParticleSystem _smoke;
 
-    private void Update()
+
+    void Start()
     {
-        PlaySmokeEffect();
+        StartCoroutine(PlayPauseCycle());
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator PlayPauseCycle()
     {
-        base.OnTriggerEnter(other);
-        /*if (other.CompareTag("Player"))
+        while (true)
         {
-            Debug.Log("Player enter!");
+            _smoke.Play();
+            GetComponent<BoxCollider>().enabled = true;
+            yield return new WaitForSeconds(1f);
 
-            Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
-
-            if (playerRigidbody != null)
-            {
-                Debug.Log("Player has Rigidbody!");
-                Vector3 pushDirection = -other.transform.forward;
-
-                playerRigidbody.AddForce(pushDirection * pushForce, ForceMode.Impulse);
-            }
-        }*/
+            _smoke.Stop();
+            GetComponent <BoxCollider>().enabled = false;
+            yield return new WaitForSeconds(1f);
+        }
     }
 
-    private void PlaySmokeEffect()
+    public void StopSmoke()
     {
-        // Play smoke effect
-    }
-
-    // Stop smoke effect
-    public void StopEject()
-    {
-
+        StopCoroutine(PlayPauseCycle());
     }
 
 }
