@@ -11,7 +11,7 @@ public class RetrieveArea : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Debug.Log("Enter!");
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.F))
+        if ((other.CompareTag("Player") || other.CompareTag("SmallPlayer")) && Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("Retieved!");
             switch (_item.tag){

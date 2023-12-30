@@ -29,6 +29,7 @@ public class ButtonF : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.F)){
                 Debug.Log("Stay in ButtonF");
                 FanObj.GetComponent<Fan>().StopSpin();
+                GetComponent<BoxCollider>().enabled = false;
             }
         }
     }

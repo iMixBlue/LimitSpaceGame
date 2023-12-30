@@ -7,6 +7,7 @@ TagManager:
   - Diminution
   - CinemachineTarget
   - SmallPlayer
+  - Coin
   layers:
   - Default
   - TransparentFX

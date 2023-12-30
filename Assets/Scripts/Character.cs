@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
     public Usable GetItem(Inventory.item theItem) { return _inventory.GetItem(theItem); }
 
     //public Usable GetItem(Inventory.item theItem) { return _inventory.GetItem(theItem); }
-    public void ReceiveCoin() { _inventory.ReceiveCoin(); }
+    public void ReceiveCoin() { _inventory.ReceiveCoin(); Debug.Log("Coin Received!"); }
 
     public int CurrentCoin() { return _inventory.CurrentCoin(); }
 
