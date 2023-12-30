@@ -45,6 +45,8 @@ public class DiminutionExecuter : Usable
         thirdPersonController.GroundedOffset = -0.014f;
         thirdPersonController.GroundedRadius = 0.028f;
         Character character = _player.GetComponent<Character>();
+        character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = 0.5f;
+        character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset.y = -0.25f;
 
         thirdPersonController._animator.runtimeAnimatorController = character.miniController;
     }
