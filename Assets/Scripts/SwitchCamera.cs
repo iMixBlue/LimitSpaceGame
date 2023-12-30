@@ -30,7 +30,12 @@ public class SwitchCamera : MonoBehaviour
             _player.GetComponent<ThirdPersonController>().TopClamp = 20;
             _player.GetComponent<ThirdPersonController>().BottomClamp = -89;
             caveToHouseCamera.SetActive(true);
-            Invoke("RecoverThirdPersonCamera",15f);
+            // Invoke("RecoverThirdPersonCamera",15f);
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+        if(other.gameObject.tag == "SmallPlayer"){
+            RecoverThirdPersonCamera();
         }
     }
     public void RecoverThirdPersonCamera(){
