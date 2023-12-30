@@ -6,11 +6,11 @@ using UnityEngine;
 public class Smoke : Bounce
 {
     [SerializeField] ParticleSystem _smoke;
-
+    Coroutine _smokeCoroutine;
 
     void Start()
     {
-        StartCoroutine(PlayPauseCycle());
+        _smokeCoroutine = StartCoroutine(PlayPauseCycle());
     }
 
     IEnumerator PlayPauseCycle()
@@ -19,7 +19,7 @@ public class Smoke : Bounce
         {
             _smoke.Play();
             GetComponent<BoxCollider>().enabled = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2.5f);
 
             _smoke.Stop();
             GetComponent <BoxCollider>().enabled = false;
@@ -29,7 +29,10 @@ public class Smoke : Bounce
 
     public void StopSmoke()
     {
-        StopCoroutine(PlayPauseCycle());
+        Debug.Log("Stopped smoke");
+        StopCoroutine(_smokeCoroutine);
+        _smoke.Stop();
+        GetComponent<BoxCollider>().enabled = false;
     }
 
 }

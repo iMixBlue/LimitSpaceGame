@@ -5,6 +5,9 @@ using UnityEngine;
 public class ButtonF : MonoBehaviour
 {
     public GameObject FanObj;
+    public GameObject smoke1;
+    public GameObject smoke2;
+    public GameObject smoke3;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,9 @@ public class ButtonF : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.F)){
                 Debug.Log("Stay in ButtonF");
                 FanObj.GetComponent<Fan>().StopSpin();
+                smoke1.GetComponent<Smoke>().StopSmoke();
+                smoke2.GetComponent<Smoke>().StopSmoke();
+                smoke3.GetComponent<Smoke>().StopSmoke();
                 GetComponent<BoxCollider>().enabled = false;
             }
         }
