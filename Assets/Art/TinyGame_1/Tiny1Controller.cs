@@ -26,6 +26,8 @@ public class Tiny1Controller : MonoBehaviour
     private int inputCount = 0;
     private const int maxInputCount = 4;
     private bool isMoving = false;
+    public GameObject SmallGamer;
+
     private void Start()
     {
         moveDirections = new ObservableQueue<Vector3>();
@@ -81,25 +83,27 @@ public class Tiny1Controller : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-
-        {
-            if (other.gameObject.tag == "Tiny1Wall" && moveDirections.Count > 0)
-            {
-                // 改变移动方向
-                currentDirection = moveDirections.Dequeue();
-            }
-
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
+         if (other.gameObject.tag == "Tiny1Wall" && moveDirections.Count > 0)
+            {
+                // 改变移动方向
+                Debug.Log(1);
+                currentDirection = moveDirections.Dequeue();
+            }
         if (other.gameObject.tag == "Tiny1End")
         {
             // 游戏胜利
             uiManager.winText.GetComponent<TMP_Text>().text = "   You Win !";
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
+            try{
+                SmallGamer.GetComponent<SmallGamer>().ThirdpersonFollowCamera.SetActive(true);
+                SmallGamer.GetComponent<SmallGamer>().MainCamera.gameObject.SetActive(true);
+                SmallGamer.GetComponent<SmallGamer>().SmallGamerCamera.SetActive(false);
+                SmallGamer.GetComponent<SmallGamer>()._player.SetActive(true);
+                SmallGamer.GetComponent<SmallGamer>().gamerCharacter.GetComponent<Tiny1Controller>().enabled = false;
+                SmallGamer.GetComponent<SmallGamer>().once = true;
+            }catch{}
             // Debug.Log("You Win!");
         }
     }
