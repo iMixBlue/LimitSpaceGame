@@ -16,7 +16,7 @@ public class PortalTeleporter : MonoBehaviour
             Vector3 portalToPlayer = player.position - transform.position;
             float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
             // Debug.Log(dotProduct < 0f);
-            if ( dotProduct > 0f)
+            if ( dotProduct < 0f)
             {
                 player.GetComponent<CharacterController>().enabled = false;
                 float rotationDifference = Quaternion.Angle(transform.rotation, receiver.rotation);
