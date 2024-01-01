@@ -32,7 +32,7 @@ public class CeilingLight : MonoBehaviour
     void Update()
     {
          if(inCeiling && Input.GetKeyDown(KeyCode.F)){
-            Debug.Log(1);
+            // Debug.Log(1);
             this.gameObject.transform.DetachChildren();
             player.GetComponent<ThirdPersonController>().enabled = true;
             player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
@@ -111,13 +111,13 @@ public class CeilingLight : MonoBehaviour
             
         }
     }
-    // private void OnTriggerExit(Collider other) {
-    //     if(other.tag == "SmallPlayer"){
-    //         inCeiling= false;
-    //         player.GetComponent<ThirdPersonController>().enabled = true;
-    //         player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
-    //     }
-    // }
+    private void OnTriggerExit(Collider other) {
+        if(other.tag == "SmallPlayer"){
+            inCeiling= false;
+            // player.GetComponent<ThirdPersonController>().enabled = true;
+            // player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
+        }
+    }
     private void OnTriggerStay(Collider other) {
        
     }

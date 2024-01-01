@@ -27,6 +27,7 @@ public class Tiny1Controller : MonoBehaviour
     private const int maxInputCount = 4;
     private bool isMoving = false;
     public GameObject SmallGamer;
+    public GameObject GunFFF;
 
     private void Start()
     {
@@ -93,6 +94,7 @@ public class Tiny1Controller : MonoBehaviour
             }
         if (other.gameObject.tag == "Tiny1End")
         {
+            GunFFF.GetComponent<GunFFF>().have3Gold = true;
             // 游戏胜利
             uiManager.winText.GetComponent<TMP_Text>().text = "   You Win !";
             // Time.timeScale = 0;
