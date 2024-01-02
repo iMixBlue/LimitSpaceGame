@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f658dff769a66d3448005affd8f38192, type: 3}
+  m_Name: Choice5
+  m_EditorClassIdentifier: 
+  state: 0
+  datas:
+  - Speaker: Mouse
+    Content: '"When the master was running this restaurant, I was born in the mouse
+      hole here. '
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: 'After consuming dishes made by the master for a long time, I gained
+      some spirituality. '
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: Thus, I detested the life of rummaging for food in the garbage piles
+      with my fellow mice.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: 'I established a garden beneath the restaurant to reside in."
+
+'
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: '"What kind of garden?"'
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: The master once cultivated many special and precious spices. After his
+      passing,
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: I took some spice seeds back to my hole and planted them.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: It's those cherished spices that didn't go extinct."
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: '"It seems you''re not a simple mouse."'
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: '"Of course not. I''m here today to test your skills. It appears you
+      possess some of the master''s spirit, '
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: ' but don''t get too proud. This is just the beginning. If you can pass
+      the test, '
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: the rewards will be quite generous. I will reward you with the seeds
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: of my improved spices, a treasure that chefs like you dream of."
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  boxStyle: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f658dff769a66d3448005affd8f38192, type: 3}
+  m_Name: Day1_databaseBefore
+  m_EditorClassIdentifier: 
+  state: 2
+  datas:
+  - Speaker: Narration
+    Content: Mouse stands up with satisfaction, his whiskers twitching with excitement.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Mouse
+    Content: what a nostalgic flavour ...... appreciable skill, but still a far cry
+      from the master.
+    AutoNext: 1
+    NeedTyping: 1
+    CanQuickShow: 1
+  boxStyle: 0
