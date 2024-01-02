@@ -19,14 +19,14 @@ public class PortalTeleporter : MonoBehaviour
             if ( dotProduct < 0f)
             {
                 player.GetComponent<CharacterController>().enabled = false;
-                float rotationDifference = Quaternion.Angle(transform.rotation, receiver.rotation);
+                float rotationDifference = -Quaternion.Angle(transform.rotation, receiver.rotation);
                 rotationDifference += 180;
                 player.Rotate(Vector3.up, rotationDifference);
 
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDifference, 0f) * portalToPlayer;
                 player.position = receiver.position + positionOffset;
                 
-                player.position = receiver.position;
+                //player.position = receiver.position;
                 player.GetComponent<CharacterController>().enabled = true;
                 playerIsOverlapping = false;
             }
@@ -36,7 +36,7 @@ public class PortalTeleporter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "SmallPlayer")
+        if (other.tag == "SmallPlayer" || other.tag == "Player")
         {
             playerIsOverlapping = true;
         }
@@ -44,7 +44,7 @@ public class PortalTeleporter : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "SmallPlayer" || other.tag == "Player")
         {
             playerIsOverlapping = false;
         }
