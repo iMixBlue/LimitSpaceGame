@@ -15,33 +15,44 @@ public class SwitchCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "SmallPlayer"){
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "SmallPlayer")
+        {
             ThirdPersonFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = false;
             FirstPersonFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = true;
+            _player.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            _player.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            _player.transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().enabled = false;
             _player.GetComponent<ThirdPersonController>().TopClamp = 20;
             _player.GetComponent<ThirdPersonController>().BottomClamp = -89;
             caveToHouseCamera.SetActive(true);
             // Invoke("RecoverThirdPersonCamera",15f);
         }
     }
-    private void OnTriggerExit(Collider other) {
-        if(other.gameObject.tag == "SmallPlayer"){
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "SmallPlayer")
+        {
             RecoverThirdPersonCamera();
         }
     }
-    public void RecoverThirdPersonCamera(){
+    public void RecoverThirdPersonCamera()
+    {
         Debug.Log("Recover Camera!");
         ThirdPersonFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = true;
         FirstPersonFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = false;
+        _player.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = true;
+        _player.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+        _player.transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().enabled = true;
         _player.GetComponent<ThirdPersonController>().TopClamp = 70;
         _player.GetComponent<ThirdPersonController>().BottomClamp = -30;
         caveToHouseCamera.SetActive(false);

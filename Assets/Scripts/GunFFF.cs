@@ -8,8 +8,8 @@ using UnityEngine.Rendering.Universal;
 public class GunFFF : MonoBehaviour
 {
     public GameObject gunAllObj;
-    // public GameObject player;
-    public GameObject MainCamera;
+    public GameObject gun;
+    public GameObject player;
     public GameObject PlayerFollowCamera;
     public GameObject FirstFollowCamera;
     public bool inGunGame = false;
@@ -31,8 +31,12 @@ public class GunFFF : MonoBehaviour
                 gunAllObj.SetActive(false);
                 FirstFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = false;
                 // player.SetActive(true);
-                MainCamera.SetActive(true);
+                // MainCamera.SetActive(true);  
                 PlayerFollowCamera.SetActive(true);
+                player.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = true;
+                player.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+                player.transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().enabled = true;
+                gun.SetActive(false);
             }
         }
          if(this.canPreesF){
@@ -41,8 +45,12 @@ public class GunFFF : MonoBehaviour
                 gunAllObj.SetActive(true);
                 FirstFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = true;
                 // player.SetActive(false);
-                MainCamera.SetActive(false);
+                // MainCamera.SetActive(false);
                 PlayerFollowCamera.SetActive(false);
+                player.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
+                player.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+                player.transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().enabled = false;
+                gun.SetActive(true);
                 inGunGame = true;
             }
         }
