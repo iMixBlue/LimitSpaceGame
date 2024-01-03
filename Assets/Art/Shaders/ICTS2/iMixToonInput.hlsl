@@ -60,6 +60,16 @@ fixed _Is_LightColor_HighColor;
 fixed _Is_NormalMapToHighColor;
 float _HighColor_Power;
 
+//StartRail Sperular
+#if _AREA_HAIR || _AREA_BODY
+    float _SpecularExpon;
+    float _SpecularKsNonMetal;
+    float _SpecularKsMetal;
+    float _SpecularBrightness;
+#endif
+
+//End
+
 fixed _Is_SpecularToHighColor;
 fixed _Is_BlendAddToHiColor;
 fixed _Is_UseTweakHighColorOnShadow;
@@ -227,7 +237,8 @@ float3 _HeadForward;
 float3 _HeadRight;
 
 #if _AREA_FACE
-TEXTURE2D(_FaceMap); SAMPLER(sampler_FaceMap);
+TEXTURE2D(_FaceMap); SAMPLER(sampler_FaceMap); 
+// sampler2D _FaceMap;
 TEXTURE2D(_BodyCoolRamp); SAMPLER(sampler_BodyCoolRamp);
 TEXTURE2D(_BodyWarmRamp); SAMPLER(sampler_BodyWarmRamp);
 #elif _AREA_HAIR

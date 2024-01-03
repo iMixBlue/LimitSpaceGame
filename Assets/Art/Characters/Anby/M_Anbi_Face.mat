@@ -374,7 +374,7 @@ Material:
     - Vector1_c89cb8dc56774a9583c7b9c3a5725c4c: 0
     - Vector1_e5b6f1488dec4326bd8bbd0e05156810: 0
     - _1st2nd_Shades_Feather: 0.0001
-    - _1st_ShadeColor_Feather: 0.6
+    - _1st_ShadeColor_Feather: 0.104
     - _1st_ShadeColor_Step: 0.5
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0
@@ -490,7 +490,7 @@ Material:
     - _FaceShadowMapPow: 0.2
     - _FaceShadowOffset: -0.01
     - _FaceShadowSmoothness: 0
-    - _FaceShadowTransitionSoftness: 0.25
+    - _FaceShadowTransitionSoftness: 0.225
     - _Farthest_Distance: 100
     - _FirstShadeOverridden: 0
     - _FirstShadeVisible: 1
@@ -681,10 +681,14 @@ Material:
     - _SpecSource: 0
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
+    - _SpecularBrightness: 1
     - _SpecularClipStrength: 0
+    - _SpecularExpon: 50
     - _SpecularFalloff: 0.5
     - _SpecularGlossness: 50
     - _SpecularHighlights: 1
+    - _SpecularKsMetal: 1
+    - _SpecularKsNonMetal: 0.04
     - _SpecularMode: 0
     - _SpecularOcclusionMode: 1
     - _SpecularSize: 0.25

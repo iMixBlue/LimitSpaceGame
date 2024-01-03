@@ -524,7 +524,7 @@ Material:
     - _SPRDefaultUnlitColorMask: 15
     - _SRPDefaultUnlitColMode: 1
     - _SSRefractionProjectionModel: 0
-    - _SSSWeightPBR: 0
+    - _SSSWeightPBR: 0.75
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _SecondShadeOverridden: 0
@@ -538,7 +538,11 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
+    - _SpecularBrightness: 10
+    - _SpecularExpon: 50
     - _SpecularHighlights: 1
+    - _SpecularKsMetal: 1
+    - _SpecularKsNonMetal: 0.04
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -620,8 +624,8 @@ Material:
     - _roughness: 0.555
     - _simpleUI: 0
     - _subsurface: 0.467
-    - _test1: 0.25
-    - _test2: 0.775
+    - _test1: 0.2
+    - _test2: 1
     - _test3: 0
     - _utsTechnique: 1
     - _utsVersionX: 0
@@ -666,6 +670,6 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
-    - _sssColor: {r: 1, g: 1, b: 1, a: 1}
+    - _sssColor: {r: 0.8773585, g: 0.40376127, b: 0.39453536, a: 1}
     - emissive: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -67,7 +67,7 @@ Shader "iMixToonShader"
 		_FaceShadowTransitionSoftness ("Face shadow transition softness (Default 0.05)", Range(0, 1)) = 0.05
 
 		//Specular
-		[Header(Specular)]
+		[Header(UTSSpecular)]
 		[NoScaleOffset]_HighColor_Tex ("HighColor_Tex", 2D) = "white" { }
 		[Toggle(_)] _Is_LightColor_HighColor ("Is_LightColor_HighColor", Float) = 1
 		[Toggle(_)] _Is_NormalMapToHighColor ("Is_NormalMapToHighColor", Float) = 0
@@ -76,6 +76,12 @@ Shader "iMixToonShader"
 		[Toggle(_)] _Is_BlendAddToHiColor ("Is_BlendAddToHiColor", Float) = 0
 		[Toggle(_)] _Is_UseTweakHighColorOnShadow ("Is_UseTweakHighColorOnShadow", Float) = 0
 		_TweakHighColorOnShadow ("TweakHighColorOnShadow", Range(0, 1)) = 0
+
+		[Header(StartRailSpecular)]
+		_SpecularExpon ("Specular exponent (Default 50)", Range(1, 128)) = 50
+		_SpecularKsNonMetal ("Specular Ks non-metal (Default 0.04)", Range(0, 1)) = 0.04
+		_SpecularKsMetal ("Specular Ks metal (Default 1)", Range(0, 1)) = 1
+		_SpecularBrightness ("Specular brightness (Default 1)", Range(0, 10)) = 1
 		
 		//UTS3 RimLight
 		[Header(RimLight)]
