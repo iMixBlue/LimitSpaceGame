@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PortalTextureSetup : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PortalTextureSetup : MonoBehaviour
     public Camera cameraB;
     public Material cameraAMat;
     public Material cameraBMat;
+
     void Start()
     {
         if (cameraA.targetTexture != null)
@@ -24,4 +26,5 @@ public class PortalTextureSetup : MonoBehaviour
         cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
         cameraBMat.mainTexture = cameraB.targetTexture;
     }
+    
 }

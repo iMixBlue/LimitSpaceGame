@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityStandardAssets._2D;
 
 public class ObservableQueue<T> : Queue<T>
 {
@@ -27,10 +29,13 @@ public class Tiny1Controller : MonoBehaviour
     private const int maxInputCount = 4;
     private bool isMoving = false;
     public GameObject SmallGamer;
+    public GameObject SmallGamerCanvas;
     public GameObject GunFFF;
+    private Vector3 position;
 
     private void Start()
     {
+        position = transform.position;
         moveDirections = new ObservableQueue<Vector3>();
         moveDirections.OnEnqueue += UpdateArrowUI;
     }
@@ -57,9 +62,26 @@ public class Tiny1Controller : MonoBehaviour
             }
         }
     }
+    public void Restart(){
+        transform.position = position;
+        Sprite arrowSprite = null;
+        isMoving = false;
+        inputCount = 0;
+        moveDirections.Clear();
+        for(int i=0; i<4;i++){
+                Color newColor = uiManager.arrowImages[i].color;
+                newColor.a = 0;
+                uiManager.arrowImages[i].color = newColor;
+                uiManager.arrowImages[i].sprite = arrowSprite;
+        }
+
+    }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R)){
+            Restart();
+        }
 
         if (inputCount < maxInputCount)
         {
@@ -105,6 +127,10 @@ public class Tiny1Controller : MonoBehaviour
                 SmallGamer.GetComponent<SmallGamer>()._player.SetActive(true);
                 SmallGamer.GetComponent<SmallGamer>().gamerCharacter.GetComponent<Tiny1Controller>().enabled = false;
                 SmallGamer.GetComponent<SmallGamer>().once = true;
+                SmallGamer.GetComponent<SmallGamer>().RestartText.SetActive(false);
+                SmallGamer.GetComponent<SmallGamer>().enabled = false;
+                SmallGamer.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                SmallGamerCanvas.SetActive(false);
             }catch{}
             // Debug.Log("You Win!");
         }

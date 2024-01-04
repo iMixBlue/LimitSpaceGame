@@ -11,6 +11,7 @@ public class SmallGamer : MonoBehaviour
     public GameObject _player;
     private bool inTrigger = false;
     public bool once = true;
+    public GameObject RestartText;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class SmallGamer : MonoBehaviour
                 SmallGamerCamera.SetActive(true);
                 _player.SetActive(false);
                 gamerCharacter.GetComponent<Tiny1Controller>().enabled = true;
+                RestartText.SetActive(true);
                 once = false;
             }
         }

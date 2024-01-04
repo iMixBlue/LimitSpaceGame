@@ -18,7 +18,7 @@ public class LevelPresenter : MonoBehaviour
 
     private void UpdateUI()
     {
-        levelText.text = $"Level: {level.GetLevel()}";
+        // levelText.text = $"Level: {level.GetLevel()}";
         experienceText.text = $"XP: {level.GetExperience()}";
     }
 }
