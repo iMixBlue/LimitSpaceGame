@@ -22438,7 +22438,7 @@ GameObject:
   - component: {fileID: 560699913}
   - component: {fileID: 560699912}
   m_Layer: 3
-  m_Name: Cylinder
+  m_Name: Clockwork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30950,7 +30950,7 @@ Transform:
   m_GameObject: {fileID: 885255844}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32326585, y: 0.000000016281332, z: -0.000000005561823, w: 0.9463082}
-  m_LocalPosition: {x: 2.7843058, y: 2.5, z: 4.3169813}
+  m_LocalPosition: {x: 2.7843053, y: 2.5, z: 4.3169813}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36179,7 +36179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateSpeed: 60
-  canRotateBool: 1
 --- !u!1 &1067158264
 GameObject:
   m_ObjectHideFlags: 0
@@ -45156,8 +45155,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2042488564}
-  - {fileID: 1780306031}
   - {fileID: 560699911}
+  - {fileID: 1780306031}
   - {fileID: 387580615}
   - {fileID: 255180825}
   m_Father: {fileID: 843415172}
@@ -45195,11 +45194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bfd0d6733a5ce498ea07bc5a4a8d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clockwork: {fileID: 560699911}
+  forceMagnitude: 10
   _UnwoundTransform: {fileID: 387580615}
   _fullWoundTransform: {fileID: 255180825}
   _firePoint: {fileID: 2042488564}
-  forceMagnitude: 10
+  _clockwork: {fileID: 0}
 --- !u!114 &1369864616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45212,11 +45211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bfd0d6733a5ce498ea07bc5a4a8d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clockwork: {fileID: 560699911}
+  forceMagnitude: 10
   _UnwoundTransform: {fileID: 387580615}
   _fullWoundTransform: {fileID: 255180825}
   _firePoint: {fileID: 0}
-  forceMagnitude: 10
+  _clockwork: {fileID: 0}
 --- !u!54 &1369864617
 Rigidbody:
   m_ObjectHideFlags: 0

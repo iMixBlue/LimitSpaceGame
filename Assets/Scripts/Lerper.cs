@@ -9,7 +9,7 @@ public class Lerper
     Transform _t1;
     AnimationCurve _curve;
     float T = 0;
-    public float _speed;
+    float _speed;
 
     public Lerper(Transform item, Transform t0, Transform t1, AnimationCurve curve)
     {

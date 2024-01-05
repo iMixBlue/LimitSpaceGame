@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonF : MonoBehaviour
+public class PipeObstacleStop : MonoBehaviour
 {
     public GameObject FanObj;
     public GameObject smoke1;

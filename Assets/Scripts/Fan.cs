@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class Fan : Bounce
 {
-    GameObject _fan;
-    public float _rotateSpeed;
-    [SerializeField]
-    private bool canRotateBool = true;
+    [SerializeField] float _rotateSpeed;
     protected override float _pushForce => 10f;
 
     private void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other);
+        // Bounce back effect
+        if (other.gameObject.tag == "SmallPlayer") { OnDied(); }
     }
-    public void OnDied(){
-        //把主角传送回上一个存档点
+    void OnDied(){
+        // Teleport to the last saved point
     }
-    private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "SmallPlayer"){
-             if(canRotateBool){
-                 OnDied();
-             }
-        }
-    }
+
     private void Update() {
-        if(canRotateBool){
-        this.transform.Rotate (Vector3.up,_rotateSpeed*Time.deltaTime,Space.Self);
-        }
+        this.transform.Rotate(Vector3.up,_rotateSpeed * Time.deltaTime, Space.Self);
     }
 
     public void StopSpin()
     {
-        this.canRotateBool = false;
+        this.enabled = false;
     }
 }

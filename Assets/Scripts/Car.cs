@@ -6,26 +6,27 @@ public class Car : MonoBehaviour
 {
     float _power = 0;
     float _powerThreshold = 0.2f;
-    float _powerAddSpeed = 10   ;
-    float _powerLoseSpeed = 1;
-    [SerializeField] Transform _clockwork;
+    float _powerAddAmount = 10   ;
+    float _powerLoseAmount = 1;
+    [SerializeField] float forceMagnitude = 8f;
     [SerializeField] Transform _UnwoundTransform;
     [SerializeField] Transform _fullWoundTransform;
-    Lerper _clockworkLerper;
     [SerializeField] Transform _firePoint;
-    public float forceMagnitude = 8f;
+    [SerializeField] Transform _clockwork;
+    Transform _driver;
+    Lerper _clockworkLerper;
     bool _isPlayerInCar = false;
     bool _ejected = false;
-    Transform _player;
 
     private void Start()
     {
-        _clockworkLerper = new Lerper(_clockwork, _UnwoundTransform, _fullWoundTransform, AnimationCurve.Linear(0f, 0f, 1f, 1f));
         _firePoint = transform.GetChild(0);
+        _clockwork = transform.GetChild(1);
+        _clockworkLerper = new Lerper(_clockwork, _UnwoundTransform, _fullWoundTransform, AnimationCurve.Linear(0f, 0f, 1f, 1f));
     }
     private void Update()
     {
-        _power -= _powerLoseSpeed * Time.deltaTime;
+        _power -= _powerLoseAmount * Time.deltaTime;
         _power = Mathf.Clamp01(_power);
         //UnwindClockwork();
         _clockworkLerper.ApplyLerp();
@@ -39,9 +40,9 @@ public class Car : MonoBehaviour
         {
             UnwindClockwork();
         }
-        if (_isPlayerInCar && _player != null && !_ejected)
+        if (_isPlayerInCar && _driver != null && !_ejected)
         {
-            _player.transform.position = _firePoint.transform.position;
+            _driver.transform.position = _firePoint.transform.position;
         }
         if (GetComponent<Rigidbody>().velocity.magnitude < 0.1f)
         {
@@ -50,11 +51,11 @@ public class Car : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        // Player enter the car
+        // Press F to enter the car
         if (other.CompareTag("SmallPlayer"))
         {
             Debug.Log("Player entered£¡");
-            _player = other.transform;
+            _driver = other.transform;
             if (Input.GetKeyDown(KeyCode.F)){
                 other.GetComponent<Character>().SetInCarState();
                 //other.transform.position = _firePoint.transform.position;
@@ -63,20 +64,20 @@ public class Car : MonoBehaviour
             //Debug.Log("Add speed: " + _powerLoseSpeed * Time.deltaTime + "Add speed: " + _powerAddSpeed * Time.deltaTime);
         }
 
-        // Player wind the clockwork
+        // If in the car, press E to wind the clockwork
         if (_isPlayerInCar)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                _power += _powerAddSpeed * Time.deltaTime;
+                _power += _powerAddAmount * Time.deltaTime;
 
-                if (_clockworkLerper.IsLerpRotationDone())
+                if (_clockworkLerper.IsLerpRotationDone())      // Eject when fully-wound
                 {
                     GetComponent<BoxCollider>().enabled = false;
                     Eject();
                 }
             }
-            _player.transform.position = _firePoint.transform.position;
+            _driver.transform.position = _firePoint.transform.position;
         }
     }
 
@@ -84,7 +85,7 @@ public class Car : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player exited£¡");
+            // Debug.Log("Player exited£¡");
             UnwindClockwork();
         }
     }
@@ -95,24 +96,18 @@ public class Car : MonoBehaviour
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         Vector3 forceDirection = gameObject.transform.forward * forceMagnitude;
         rb.AddForce(forceDirection, ForceMode.Impulse);
-        StartCoroutine(SetGetOffCar(1));
+        StartCoroutine(PushPlayerOffCar(1));
     }
 
-    void WindClockwork()
-    {
-        _clockworkLerper.ToT1();
-    }
+    void WindClockwork() { _clockworkLerper.ToT1(); }
 
-    void UnwindClockwork()
-    {
-        _clockworkLerper.ToT0();
-    }
+    void UnwindClockwork() { _clockworkLerper.ToT0(); }
 
-    IEnumerator SetGetOffCar(float seconds)
+    IEnumerator PushPlayerOffCar(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         _ejected = true;
         _isPlayerInCar = false;
-        _player.GetComponent<Character>().SetMinitate();
+        _driver.GetComponent<Character>().SetMinitate();
     }
 }

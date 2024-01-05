@@ -13,7 +13,6 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-
         _inventory = new Inventory();
         _respawnManager = new RespawnManager(this.gameObject);
     }
