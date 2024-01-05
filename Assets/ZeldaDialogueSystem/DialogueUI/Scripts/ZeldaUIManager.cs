@@ -10,7 +10,7 @@ public class ZeldaUIManager : MonoBehaviour
 {
     // [SerializeField]
     public static ZeldaUIManager _instance;
-    public GameObject ChangeSceneButton;
+    // public GameObject ChangeSceneButton;
     public GameObject FinalCGThanks;
     public  void SetTestReturn(){
     }
@@ -105,9 +105,9 @@ public class ZeldaUIManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    public static void SetChangeSceneButton(){
-        _instance.ChangeSceneButton.SetActive(true);
-    }
+    // public static void SetChangeSceneButton(){
+    //     _instance.ChangeSceneButton.SetActive(true);
+    // }
     public static void DisplayFinalCG(){
         _instance.FinalCGThanks.SetActive(true);
     }

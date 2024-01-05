@@ -9,7 +9,7 @@ public class CeilingLight : MonoBehaviour
     public GameObject player;
     public RuntimeAnimatorController runtimeAnimatorController;
     public RuntimeAnimatorController runtimeAnimatorControllerBackup;
-    private bool inCeiling = false;
+    public bool inCeiling = false;
     public Transform cameraBasePoint;
     public Transform climbPosition1;
     public Transform climbPosition2;

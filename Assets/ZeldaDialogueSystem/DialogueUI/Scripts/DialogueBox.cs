@@ -84,7 +84,7 @@ public class DialogueBox : MonoBehaviour
                 OnNext(true);
             }
         }
-        else if (Input.GetButtonDown("Submit") ||Input.GetMouseButtonDown(0))
+        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButton(0) )
         {
             if (CanNext)
             {
