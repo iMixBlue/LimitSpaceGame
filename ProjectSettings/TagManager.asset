@@ -11,6 +11,7 @@ TagManager:
   - Tiny1Wall
   - Tiny1End
   - Bullet
+  - Restore
   layers:
   - Default
   - TransparentFX

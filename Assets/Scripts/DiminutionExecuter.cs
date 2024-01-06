@@ -46,9 +46,27 @@ public class DiminutionExecuter : Usable
         thirdPersonController.GroundedRadius = 0.028f;
         Character character = _player.GetComponent<Character>();
         character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = 0.5f;
-        character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset.y = -0.25f;
+        //character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset.y = -0.25f;
 
         thirdPersonController._animator.runtimeAnimatorController = character.miniController;
+    }
+
+    public void SetNormalDetail()
+    {
+        Debug.Log("Set Normal Detail!");
+        ThirdPersonController thirdPersonController = _player.GetComponent<ThirdPersonController>();
+
+        thirdPersonController.MoveSpeed = 2f;
+        thirdPersonController.SprintSpeed = 5.335f;
+        thirdPersonController.JumpHeight = 1f;
+        thirdPersonController.Gravity = -15;
+        thirdPersonController.GroundedOffset = -0.14f;
+        thirdPersonController.GroundedRadius = 0.28f;
+        Character character = _player.GetComponent<Character>();
+        character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = 3.2f;
+        character.virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset.y = -0.3f;
+
+        thirdPersonController._animator.runtimeAnimatorController = character.normalController;
     }
 }
 

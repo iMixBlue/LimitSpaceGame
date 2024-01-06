@@ -24,6 +24,13 @@ public class RetrieveArea : MonoBehaviour
                     OnItemGetAction = null;
                     potion.SetMiniDetail();
                     break;
+                case "Restore":
+                    other.gameObject.tag = "Player";
+                    OnItemGetAction?.Invoke();
+                    OnItemGetAction = null;
+                    DiminutionExecuter potionInInventory = other.GetComponent<Character>().GetItem(Inventory.item.Diminution) as DiminutionExecuter;
+                    potionInInventory.SetNormalDetail();
+                    break;
                 case "Coin":
                     other.GetComponent<Character>().ReceiveCoin();
                     break;

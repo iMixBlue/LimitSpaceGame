@@ -9,7 +9,8 @@ public class Character : MonoBehaviour
     Inventory _inventory;
     RespawnManager _respawnManager;
     public CinemachineVirtualCamera virtualCamera;
-    public RuntimeAnimatorController miniController; 
+    public RuntimeAnimatorController miniController;
+    public RuntimeAnimatorController normalController;
 
     private void Start()
     {
