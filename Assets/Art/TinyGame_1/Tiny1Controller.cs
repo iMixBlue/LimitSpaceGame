@@ -31,10 +31,13 @@ public class Tiny1Controller : MonoBehaviour
     public GameObject SmallGamerCanvas;
     public GameObject GunFFF;
     private Vector3 position;
+    private Vector3 rotation;
+    public bool canDisplaySeq9 = false;
 
     private void Start()
     {
         position = transform.position;
+        rotation = transform.rotation.eulerAngles;
         moveDirections = new ObservableQueue<Vector3>();
         moveDirections.OnEnqueue += UpdateArrowUI;
     }
@@ -62,7 +65,6 @@ public class Tiny1Controller : MonoBehaviour
         }
     }
     public void Restart(){
-        transform.position = position;
         Sprite arrowSprite = null;
         isMoving = false;
         inputCount = 0;
@@ -73,6 +75,8 @@ public class Tiny1Controller : MonoBehaviour
                 uiManager.arrowImages[i].color = newColor;
                 uiManager.arrowImages[i].sprite = arrowSprite;
         }
+        transform.position = position;
+        transform.rotation = Quaternion.Euler(rotation);
 
     }
 
@@ -118,6 +122,7 @@ public class Tiny1Controller : MonoBehaviour
             GunFFF.GetComponent<GunFFF>().have3Gold = true;
             // 游戏胜利
             uiManager.winText.GetComponent<TMP_Text>().text = "   You Win !";
+            canDisplaySeq9 = true;
             // Time.timeScale = 0;
             try{
                 SmallGamer.GetComponent<SmallGamer>().ThirdpersonFollowCamera.SetActive(true);

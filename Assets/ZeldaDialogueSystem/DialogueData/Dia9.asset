@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f658dff769a66d3448005affd8f38192, type: 3}
+  m_Name: Dia9
+  m_EditorClassIdentifier: 
+  state: 2
+  datas:
+  - Speaker: You
+    Content: I've finally found the three gold coins!
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: Grandfather! Grandfather! Where are you? Come out and see!
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Grandfather
+    Content: Ha ha ha, well done!
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Grandfather
+    Content: Since you've collected my three gold coins, I'll let you out.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Grandfather
+    Content: The transformation potion is in that blue glass case.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: Grandfather
+    Content: Break it with a gun to retrieve the potion!
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  boxStyle: 0

@@ -120,7 +120,9 @@ namespace StarterAssets
 #endif
             }
         }
-        
+        public void SetSpeed(){
+            _speed = 0f;
+        }
 
 
         private void Awake()
@@ -239,7 +241,7 @@ namespace StarterAssets
                 //Debug.Log(currentHorizontalSpeed);
                 // round speed to 3 decimal places
                 _speed = Mathf.Round(_speed * 1000f) / 1000f;
-                //Debug.Log(_speed);
+                // Debug.Log(_speed);
             }
             else
             {

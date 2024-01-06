@@ -12,10 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f658dff769a66d3448005affd8f38192, type: 3}
   m_Name: Dia2
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
   datas:
   - Speaker: You
-    Content: Oops! I've shrunk!
+    Content: What! How did I shrink? What kind of trick is this?!
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: There seems to be a gold coin in that pipe above!
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: I must grab it quickly and escape this dreadful place.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: That swaying chandelier looks like it could be useful. Maybe I can use
+      it to jump into the pipe.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: First, I'll drive that wind-up car to fly onto the sofa, then I can
+      slowly climb up from there!
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1

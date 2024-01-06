@@ -10,6 +10,7 @@ public class CeilingLight : MonoBehaviour
     public RuntimeAnimatorController runtimeAnimatorController;
     public RuntimeAnimatorController runtimeAnimatorControllerBackup;
     public bool inCeiling = false;
+    public bool inCeiling2 = false;
     public Transform cameraBasePoint;
     public Transform climbPosition1;
     public Transform climbPosition2;
@@ -67,6 +68,7 @@ public class CeilingLight : MonoBehaviour
         if (other.tag == "SmallPlayer")
         {
             // Debug.Log(1);
+            inCeiling2 = true;
             inCeiling = true;
             float distance1 = Mathf.Abs(Vector3.Distance(cameraBasePoint.position, climbPosition1.position));
             float distance2 = Mathf.Abs(Vector3.Distance(cameraBasePoint.position, climbPosition2.position));
@@ -123,6 +125,7 @@ public class CeilingLight : MonoBehaviour
         if (other.tag == "SmallPlayer")
         {
             inCeiling = false;
+            inCeiling2 = false;
             // player.GetComponent<ThirdPersonController>().enabled = true;
             // player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
         }

@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f658dff769a66d3448005affd8f38192, type: 3}
   m_Name: Dia5
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
   datas:
   - Speaker: You
-    Content: 'Find the ''game console'' and complete it to get the last gold coin. '
+    Content: How did I end up here?
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1
   - Speaker: You
-    Content: Only then can I interact with the gun and break the final glass to get
-      out of here!
+    Content: Could this be another world? This door is truly magical!
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: Over to the right is the game console my grandfather loved.
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 1
+  - Speaker: You
+    Content: I should go and play it.
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1

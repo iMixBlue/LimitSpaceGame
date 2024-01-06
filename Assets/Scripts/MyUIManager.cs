@@ -13,9 +13,10 @@ public class MyUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = stopMenuBool;
-        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
         stopMenuBool = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -34,7 +35,6 @@ public class MyUIManager : MonoBehaviour
             {
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
-
             }
             Cursor.visible = stopMenuBool;
             player.GetComponent<ThirdPersonController>().enabled = !stopMenuBool;
@@ -43,9 +43,11 @@ public class MyUIManager : MonoBehaviour
     }
     public void ReloadScene()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
     public void ReturnStartMenu(){
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 }

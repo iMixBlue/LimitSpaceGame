@@ -12,42 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f658dff769a66d3448005affd8f38192, type: 3}
   m_Name: Dia1
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
   datas:
-  - Speaker: Narration
-    Content: 'One day, while you were sleeping, your brain suddenly felt dizzy, '
+  - Speaker: Grandfather
+    Content: You're here now.
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1
-  - Speaker: Narration
-    Content: and you found yourself in a strange room.
+  - Speaker: Grandfather
+    Content: If you haven't completed the task I gave you, or if you don't have the
+      three gold coins I desire
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1
-  - Speaker: ???
-    Content: I am your grandfather!
+  - Speaker: Grandfather
+    Content: then don't even think about leaving.
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1
-  - Speaker: Your Grandfather!
-    Content: To return to the real world, you must find a way to escape from here.
+  - Speaker: You
+    Content: This is terrible. I wonder if his words can be taken seriously this
+      time.
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1
-  - Speaker: Your Grandfather!
-    Content: Find three gold coins in the three levels to activate the pistol in
-      the third room.
-    AutoNext: 0
-    NeedTyping: 1
-    CanQuickShow: 1
-  - Speaker: Your Grandfather!
-    Content: 'Only after breaking the glass next to the pistol will you be able to
-      find the portal to leave. '
-    AutoNext: 0
-    NeedTyping: 1
-    CanQuickShow: 1
-  - Speaker: Your Grandfather!
-    Content: Good luck!
+  - Speaker: You
+    Content: What's that on the table? I need to go over there and take a closer
+      look.
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 1

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f658dff769a66d3448005affd8f38192, type: 3}
   m_Name: Dia3
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
   datas:
   - Speaker: You
     Content: Oops! How exciting!
-    AutoNext: 0
+    AutoNext: 1
     NeedTyping: 1
     CanQuickShow: 1
   boxStyle: 0
