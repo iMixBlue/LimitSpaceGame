@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class GunFFF : MonoBehaviour
 {
-    public GameObject gunAllObj;
+    // public GameObject gunAllObj;
     public GameObject gun;
     public GameObject player;
     public GameObject PlayerFollowCamera;
@@ -28,7 +28,7 @@ public class GunFFF : MonoBehaviour
             if(inGunGame){
             if(Input.GetKeyDown(KeyCode.F)){
                 inGunGame = false;
-                gunAllObj.SetActive(false);
+                // gunAllObj.SetActive(false);
                 FirstFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = false;
                 // player.SetActive(true);
                 // MainCamera.SetActive(true);  
@@ -42,7 +42,7 @@ public class GunFFF : MonoBehaviour
          if(this.canPreesF){
              if(Input.GetKeyDown(KeyCode.F)){
                 Debug.Log("Press F");
-                gunAllObj.SetActive(true);
+                // gunAllObj.SetActive(true);
                 FirstFollowCamera.GetComponent<CinemachineVirtualCamera>().enabled = true;
                 // player.SetActive(false);
                 // MainCamera.SetActive(false);

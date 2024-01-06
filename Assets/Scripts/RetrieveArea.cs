@@ -8,12 +8,13 @@ public class RetrieveArea : MonoBehaviour
     [SerializeField] GameObject _item;
     public event Action OnItemGetAction;
 
+
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Enter!");
+        // Debug.Log("Enter!");
         if ((other.CompareTag("Player") || other.CompareTag("SmallPlayer")) && Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("Retieved!");
+            // Debug.Log("Retieved!");
             switch (_item.tag){
                 case "Diminution":
                     other.gameObject.tag = "SmallPlayer";
@@ -37,7 +38,7 @@ public class RetrieveArea : MonoBehaviour
             }
             
             Destroy(_item);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject.GetComponent<RetrieveArea>());
         }
     }
 }

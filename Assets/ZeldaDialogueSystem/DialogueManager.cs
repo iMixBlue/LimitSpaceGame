@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject CeilingLightMain;
     public GameObject executeSeq4Obj;
     public GameObject executeSeq5Obj;
+    public GameObject RetrieveDialogueObj;
     // public int a = 500;
 
     private void Start()
@@ -37,6 +38,12 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(RetrieveDialogueObj.GetComponent<RetrieveDialogue>().canDiaplayDialogue){
+            if (executeOnce)
+            {
+                StartCoroutine(ExexutorExecutor(executor2, OnFinishedEvent2));
+            }
+        }
         if (CeilingLightMain.GetComponent<CeilingLight>().inCeiling)
         {
             if (executeOnce)

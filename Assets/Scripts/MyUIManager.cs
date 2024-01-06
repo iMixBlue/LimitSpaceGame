@@ -27,17 +27,17 @@ public class MyUIManager : MonoBehaviour
             stopMenuBool = !stopMenuBool;
             if (stopMenuBool)
             {
-                // Time.timeScale = 0;
+                Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
             }
-            if (!stopMenuBool)
+            else
             {
-                // Time.timeScale = 1;
+                Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
 
             }
             Cursor.visible = stopMenuBool;
-            player.GetComponent<ThirdPersonController>().enabled = stopMenuBool;
+            player.GetComponent<ThirdPersonController>().enabled = !stopMenuBool;
             StopMenu.SetActive(stopMenuBool);
         }
     }
