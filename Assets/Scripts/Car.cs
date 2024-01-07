@@ -5,8 +5,8 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     float _power = 0;
-    float _powerThreshold = 0.2f;
-    float _powerAddAmount = 12;
+    float _powerThreshold = 0.1f;
+    float _powerAddAmount = 36;
     float _powerLoseAmount = 1;
     [SerializeField] float forceMagnitude = 8f;
     [SerializeField] Transform _UnwoundTransform;
@@ -56,7 +56,7 @@ public class Car : MonoBehaviour
         // Press F to enter the car
         if (other.CompareTag("SmallPlayer"))
         {
-            Debug.Log("Player entered£¡");
+            Debug.Log("Player enteredï¿½ï¿½");
             _driver = other.transform;
             if (Input.GetKeyDown(KeyCode.F)){
                 _engineAudio.Play();
@@ -89,7 +89,7 @@ public class Car : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Debug.Log("Player exited£¡");
+            // Debug.Log("Player exitedï¿½ï¿½");
             UnwindClockwork();
         }
     }
