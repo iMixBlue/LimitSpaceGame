@@ -13,6 +13,7 @@ public class Car : MonoBehaviour
     [SerializeField] Transform _fullWoundTransform;
     [SerializeField] Transform _firePoint;
     [SerializeField] Transform _clockwork;
+    [SerializeField] AudioSource _engineAudio;
     Transform _driver;
     Lerper _clockworkLerper;
     bool _isPlayerInCar = false;
@@ -57,6 +58,7 @@ public class Car : MonoBehaviour
             Debug.Log("Player entered£¡");
             _driver = other.transform;
             if (Input.GetKeyDown(KeyCode.F)){
+                _engineAudio.Play();
                 other.GetComponent<Character>().SetInCarState();
                 //other.transform.position = _firePoint.transform.position;
                 _isPlayerInCar = true;
@@ -109,5 +111,6 @@ public class Car : MonoBehaviour
         _ejected = true;
         _isPlayerInCar = false;
         _driver.GetComponent<Character>().SetMinitate();
+        _engineAudio.Stop();
     }
 }

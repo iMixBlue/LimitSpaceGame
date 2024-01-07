@@ -6,6 +6,7 @@ using UnityEngine;
 public class RetrieveArea : MonoBehaviour
 {
     [SerializeField] GameObject _item;
+    [SerializeField] AudioSource _coinAudio;
     public event Action OnItemGetAction;
 
 
@@ -34,6 +35,7 @@ public class RetrieveArea : MonoBehaviour
                     break;
                 case "Coin":
                     other.GetComponent<Character>().ReceiveCoin();
+                    _coinAudio.Play();
                     break;
             }
             

@@ -8,6 +8,7 @@ public class PipeObstacleStop : MonoBehaviour
     public GameObject smoke1;
     public GameObject smoke2;
     public GameObject smoke3;
+    public AudioSource ButtonAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class PipeObstacleStop : MonoBehaviour
         if(other.gameObject.tag == "SmallPlayer"){
             if(Input.GetKeyDown(KeyCode.F)){
                 Debug.Log("Stay in ButtonF");
+                ButtonAudio.Play();
                 FanObj.GetComponent<Fan>().StopSpin();
                 smoke1.GetComponent<Smoke>().StopSmoke();
                 smoke2.GetComponent<Smoke>().StopSmoke();
