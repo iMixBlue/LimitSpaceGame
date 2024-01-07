@@ -44,10 +44,10 @@ public class MyUIManager : MonoBehaviour
     public void ReloadScene()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void ReturnStartMenu(){
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 434e5e6a7f84fb540b483e700b20c8ac, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 862a4077307e6e8408a2c9b102cdf59e, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -28477,11 +28477,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046513122695109517, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.029030694
+      value: -0.029030655
       objectReference: {fileID: 0}
     - target: {fileID: 1046513122695109517, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.007348192
+      value: 0.0073481817
       objectReference: {fileID: 0}
     - target: {fileID: 2008254535021076290, guid: c5d5b8821cd235c4eaf25c42bdadeeab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80816,7 +80816,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2281d293d46a9340a40cde55ec7a208, type: 2}
+  - {fileID: 2100000, guid: 72dd14e7029abd242a776ab62ce181b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82755,7 +82755,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2281d293d46a9340a40cde55ec7a208, type: 2}
+  - {fileID: 2100000, guid: 72dd14e7029abd242a776ab62ce181b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
