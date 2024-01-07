@@ -6,7 +6,7 @@ public class Car : MonoBehaviour
 {
     float _power = 0;
     float _powerThreshold = 0.2f;
-    float _powerAddAmount = 10   ;
+    float _powerAddAmount = 12;
     float _powerLoseAmount = 1;
     [SerializeField] float forceMagnitude = 8f;
     [SerializeField] Transform _UnwoundTransform;
