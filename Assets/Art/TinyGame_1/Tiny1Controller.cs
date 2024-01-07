@@ -8,6 +8,7 @@ using UnityStandardAssets._2D;
 
 public class ObservableQueue<T> : Queue<T>
 {
+    
     // 定义事件，用于元素被加入队列时触发
     public event Action<T> OnEnqueue;
 
@@ -33,6 +34,7 @@ public class Tiny1Controller : MonoBehaviour
     private Vector3 position;
     private Vector3 rotation;
     public bool canDisplaySeq9 = false;
+    [SerializeField] AudioSource _coinAudio;
 
     private void Start()
     {
@@ -125,6 +127,7 @@ public class Tiny1Controller : MonoBehaviour
             canDisplaySeq9 = true;
             // Time.timeScale = 0;
             try{
+                _coinAudio.Play();
                 SmallGamer.GetComponent<SmallGamer>().ThirdpersonFollowCamera.SetActive(true);
                 SmallGamer.GetComponent<SmallGamer>().MainCamera.gameObject.SetActive(true);
                 SmallGamer.GetComponent<SmallGamer>().SmallGamerCamera.SetActive(false);
