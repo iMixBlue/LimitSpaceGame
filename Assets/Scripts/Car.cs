@@ -18,6 +18,7 @@ public class Car : MonoBehaviour
     Lerper _clockworkLerper;
     bool _isPlayerInCar = false;
     bool _ejected = false;
+    //[SerializeField] GameObject _FButton;
 
     private void Start()
     {
@@ -59,6 +60,7 @@ public class Car : MonoBehaviour
             _driver = other.transform;
             if (Input.GetKeyDown(KeyCode.F)){
                 _engineAudio.Play();
+                //_FButton.SetActive(false);
                 other.GetComponent<Character>().SetInCarState();
                 //other.transform.position = _firePoint.transform.position;
                 _isPlayerInCar = true;
