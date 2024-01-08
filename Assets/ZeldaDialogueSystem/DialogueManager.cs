@@ -44,6 +44,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject ExecuteSeq9Obj;
     public GameObject ExecuteSeq11Obj;
     public GameObject ExecuteSeq12Obj;
+    [SerializeField] GameObject _portalObstacle;
     // public int a = 500;
 
     private void Start()
@@ -271,6 +272,7 @@ public class DialogueManager : MonoBehaviour
             {
                 finalThanksCG.SetActive(true);
             }
+            _portalObstacle.SetActive(false);
         }
         catch { }
 
