@@ -71,14 +71,14 @@ public class DialogueManager : MonoBehaviour
                 RetrieveDialogueObj.GetComponent<RetrieveDialogue>().canDiaplayDialogue = false;
             }
         }
-        if (CeilingLightMain.GetComponent<CeilingLight>().inCeiling2)
-        {
-            if (executeOnce)
-            {
-                StartCoroutine(ExexutorExecutor(executor3, OnFinishedEvent3));
-                CeilingLightMain.GetComponent<CeilingLight>().inCeiling2 = false;
-            }
-        }
+        // if (CeilingLightMain.GetComponent<CeilingLight>().inCeiling2)
+        // {
+        //     if (executeOnce)
+        //     {
+        //         StartCoroutine(ExexutorExecutor(executor3, OnFinishedEvent3));
+        //         CeilingLightMain.GetComponent<CeilingLight>().inCeiling2 = false;
+        //     }
+        // }
         if (executeSeq4Obj.GetComponent<ExecuteSeq4>().inExecuteSeq4Area)
         {
             if (executeOnce)

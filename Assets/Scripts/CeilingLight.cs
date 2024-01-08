@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
@@ -23,9 +24,12 @@ public class CeilingLight : MonoBehaviour
     private bool isSwingingRight = true;
     private float currentRotationZ;
     private float targetRotationZ;
+    public GameObject Fix;
+    private BoxCollider boxCollider;
     // Start is called before the first frame update
     void Start()
     {
+        boxCollider = this.GetComponent<BoxCollider>();
         targetRotationZ = swingAngle;
     }
 
@@ -36,14 +40,27 @@ public class CeilingLight : MonoBehaviour
         {
             // Debug.Log(1);
             this.gameObject.transform.DetachChildren();
+            Fix.transform.parent = this.transform;
             player.GetComponent<ThirdPersonController>().enabled = true;
             player.GetComponent<Animator>().runtimeAnimatorController = runtimeAnimatorControllerBackup;
-        }
+            inCeiling = false;
+            inCeiling2 = true;
+            // if(!this.GetComponent<BoxCollider>()){
+            // this.AddComponent<BoxCollider>();
 
-        
+            // }
+        }
+        // if (!this.GetComponent<BoxCollider>())
+        // {
+        //     this.gameObject.GetComponent<BoxCollider>().center = new Vector3(-0.032194f, 1.161236f, -4.598073e-06f);
+        //     this.gameObject.GetComponent<BoxCollider>().size = new Vector3(1.305614f, 0.1387401f, 1.41f);
+        // }
+
+
 
     }
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (isSwingingRight)
         {
             currentRotationZ += swingSpeed * Time.deltaTime;
